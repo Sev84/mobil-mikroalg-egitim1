@@ -299,6 +299,11 @@
             let chatHistory = []; 
 
             try {
+                // projectId'nin varlığını kontrol et
+                if (!firebaseConfig.projectId) {
+                    throw new Error("Firebase yapılandırmasında 'projectId' bulunamadı. Lütfen Firebase projenizin doğru yapılandırıldığından emin olun.");
+                }
+
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app); 
@@ -328,7 +333,7 @@
 
             } catch(e) { 
                 console.error("Firebase başlatma veya kimlik doğrulama hatası:", e); 
-                showMessage("Uygulama başlatılırken bir hata oluştu. Lütfen konsolu kontrol edin.", "error");
+                showMessage(`Uygulama başlatılırken bir hata oluştu: ${e.message}. Lütfen konsolu kontrol edin.`, "error");
             }
             
             const POLLUTANT_INFO = {
