@@ -280,7 +280,7 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        document.addEventListener('DOMContentLoaded', async function () { // Added async here
+        document.addEventListener('DOMContentLoaded', async function () { 
 
             const AQI_API_TOKEN = "08039ad9c3603305b99fc2bcaf155da6e0bfdc31"; 
             const CITIES = ["Hatay", "Van", "Kahramanmaraş", "Gaziantep", "Eskişehir", "Mersin", "Ankara", "Izmir", "Bursa", "Zonguldak"];
@@ -292,7 +292,7 @@
             const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
             let db;
-            let auth; // auth değişkenini global olarak tanımla
+            let auth; 
             let lastHistoryData = [];
             let latestSensorData = null;
             let allCityData = [];
@@ -301,7 +301,7 @@
             try {
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
-                auth = getAuth(app); // auth'u burada ata
+                auth = getAuth(app); 
                 console.log("Firebase başlatıldı.");
 
                 // Kimlik doğrulama
@@ -317,11 +317,12 @@
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         console.log("Kullanıcı durumu değişti:", user.uid);
-                        startRealtimeListeners(appId); // appId'yi fonksiyona geçir
+                        startRealtimeListeners(appId); 
                         loadExternalCityData();
                         setupAiChat();
                     } else {
                         console.log("Kullanıcı oturumu kapandı veya anonim oturum başlatılamadı.");
+                        resetLiveDisplay(); // Kullanıcı yoksa canlı veriyi sıfırla
                     }
                 });
 
@@ -508,6 +509,40 @@
                 
                 updateEfficiencyAnalysis(history);
             }
+
+            // Canlı veri yoksa tüm ekranı sıfırlayan fonksiyon
+            function resetLiveDisplay() {
+                document.getElementById('kpi-co2').innerHTML = `--- <span class="text-lg">ppm</span>`;
+                document.getElementById('kpi-air-quality').innerHTML = `---`;
+                document.getElementById('kpi-light').innerHTML = `--- <span class="text-lg">lux</span>`;
+                document.getElementById('kpi-temp').innerHTML = `-- <span class="text-lg">°C</span>`;
+                document.getElementById('kpi-humidity').innerHTML = `-- <span class="text-lg">%</span>`;
+                document.getElementById('kpi-tds').innerHTML = `--- <span class="text-lg">ppm</span>`;
+
+                if(tempHumidityChart) { 
+                    tempHumidityChart.data.labels = []; 
+                    tempHumidityChart.data.datasets[0].data = []; 
+                    tempHumidityChart.data.datasets[1].data = []; 
+                    tempHumidityChart.update(); 
+                }
+                if(co2Chart){ 
+                    co2Chart.data.labels = []; 
+                    co2Chart.data.datasets[0].data = []; 
+                    co2Chart.update(); 
+                }
+                if(tdsChart){ 
+                    tdsChart.data.labels = []; 
+                    tdsChart.data.datasets[0].data = []; 
+                    tdsChart.update(); 
+                }
+                if(lightChart){ 
+                    lightChart.data.labels = []; 
+                    lightChart.data.datasets[0].data = []; 
+                    lightChart.update(); 
+                }
+                document.getElementById('efficiency-analysis').innerHTML = `<p class="text-center">Yeterli veri toplanıyor...</p>`;
+                updateComparisonTable(); // Karşılaştırma tablosunu da güncelleyebiliriz, BIQ-Alg kısmı boş kalır.
+            }
             
             function updateEfficiencyAnalysis(history) {
                 const analysisElement = document.getElementById('efficiency-analysis');
@@ -568,26 +603,28 @@
                 analysisElement.innerHTML = analysisText;
             }
 
-            function startRealtimeListeners(currentAppId) { // appId parametresi eklendi
+            function startRealtimeListeners(currentAppId) { 
                 if (!db) {
                     console.error("Firestore başlatılmadı. Veri dinlenemiyor.");
+                    showMessage("Firestore bağlantısı kurulamadı. Lütfen konsolu kontrol edin.", "error");
                     return;
                 }
                 
-                // Firestore'dan canlı veri dinleme - Koleksiyon yolu güncellendi
                 const sensorDataCol = collection(db, `artifacts/${currentAppId}/public/data/sensor_data`);
-                const q = query(sensorDataCol, orderBy("timestamp", "desc"), limit(20)); // Son 20 veriyi al
+                const q = query(sensorDataCol, orderBy("timestamp", "desc"), limit(20)); 
 
                 console.log(`Firestore koleksiyonu dinleniyor: artifacts/${currentAppId}/public/data/sensor_data`);
+                showMessage(`Firestore koleksiyonu dinleniyor: artifacts/${currentAppId}/public/data/sensor_data`, "info", 3000);
+
 
                 onSnapshot(q, (snapshot) => {
                     const data = [];
                     snapshot.forEach((doc) => {
-                        data.unshift(doc.data()); // En yeni veriyi sona eklemek için unshift kullan
+                        data.unshift(doc.data()); 
                     });
                     
                     if (data.length > 0) {
-                        latestSensorData = data[data.length - 1]; // En son veriyi al
+                        latestSensorData = data[data.length - 1]; 
                         console.log("Yeni sensör verisi alındı:", latestSensorData);
 
                         document.getElementById('kpi-co2').innerHTML = `${parseFloat(latestSensorData.co2).toFixed(2)} <span class="text-lg">ppm</span>`;
@@ -598,15 +635,18 @@
                         document.getElementById('kpi-humidity').innerHTML = `${parseFloat(latestSensorData.humidity).toFixed(1)} <span class="text-lg">%</span>`;
                         document.getElementById('kpi-tds').innerHTML = `${parseFloat(latestSensorData.tds_value).toFixed(2)} <span class="text-lg">ppm</span>`;
                         
-                        updateAllCharts(data); // Tüm grafiklerin güncellenmesi
-                        updateComparisonTable(); // BIQ-Alg istasyonu verisini güncelle
+                        updateAllCharts(data); 
+                        updateComparisonTable(); 
+                        showMessage("Canlı sensör verileri güncellendi!", "success", 2000);
                     } else {
                         console.log("Firestore'dan henüz sensör verisi alınamadı veya koleksiyon boş.");
-                        showMessage("Canlı sensör verileri bekleniyor...", "info", 5000);
+                        showMessage("Canlı sensör verileri bekleniyor. Lütfen veritabanınızı kontrol edin.", "warning", 5000);
+                        resetLiveDisplay(); // Veri yoksa ekranı sıfırla
                     }
                 }, (error) => {
                     console.error("Firestore verilerini dinlerken hata oluştu:", error);
-                    showMessage("Canlı veri akışında bir sorun oluştu. Lütfen konsolu kontrol edin.", "error");
+                    showMessage("Canlı veri akışında bir sorun oluştu. Lütfen konsolu ve Firebase güvenlik kurallarınızı kontrol edin.", "error", 7000);
+                    resetLiveDisplay(); // Hata durumunda ekranı sıfırla
                 });
             }
 
@@ -625,7 +665,7 @@
 
                 const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
                 const link = document.createElement('a');
-                if (link.download !== undefined) { // feature detection
+                if (link.download !== undefined) { 
                     const url = URL.createObjectURL(blob);
                     link.setAttribute('href', url);
                     link.setAttribute('download', 'biqalg_sensor_data.csv');
@@ -658,7 +698,7 @@
 
                     appendMessage(userMessage, 'user');
                     chatInput.value = '';
-                    chatSubmitButton.disabled = true; // Mesaj gönderilirken butonu devre dışı bırak
+                    chatSubmitButton.disabled = true; 
 
                     try {
                         const prompt = `BIQ-Alg 0CO2 projesi hakkında veya aşağıdaki sensör verileriyle ilgili bir soru soruldu. Lütfen Türkçe olarak yanıtlayın.
@@ -677,7 +717,7 @@
                         chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
 
                         const payload = { contents: chatHistory };
-                        const apiKey = GEMINI_API_KEY; // API anahtarı burada kullanılıyor
+                        const apiKey = GEMINI_API_KEY; 
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                         const response = await fetch(apiUrl, {
@@ -705,8 +745,8 @@
                         console.error("Yapay zeka yanıtı alınırken hata oluştu:", error);
                         appendMessage("Yapay zeka ile iletişim kurulurken bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.", 'ai');
                     } finally {
-                        chatSubmitButton.disabled = false; // İşlem bitince butonu tekrar etkinleştir
-                        chatContainer.scrollTop = chatContainer.scrollHeight; // En alta kaydır
+                        chatSubmitButton.disabled = false; 
+                        chatContainer.scrollTop = chatContainer.scrollHeight; 
                     }
                 });
 
@@ -717,7 +757,7 @@
                     pElement.textContent = text;
                     messageElement.appendChild(pElement);
                     chatContainer.appendChild(messageElement);
-                    chatContainer.scrollTop = chatContainer.scrollHeight; // Otomatik kaydırma
+                    chatContainer.scrollTop = chatContainer.scrollHeight; 
                 }
             }
 
@@ -743,7 +783,7 @@
                 setTimeout(() => {
                     messageBox.classList.remove('translate-y-full', 'opacity-0');
                     messageBox.classList.add('translate-y-0', 'opacity-100');
-                }, 100); // Small delay to ensure transition
+                }, 100); 
 
                 // Hide the message box after duration
                 setTimeout(() => {
