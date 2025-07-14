@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <!-- Leaflet CSS -->
+    <!-- Leaflet CSS - Harita için gerekli, önceki kodunuzda yoktu ama ekliyorum -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,6 +56,30 @@
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
+        /* Message box styling */
+        .message-box {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .message-box.show {
+            opacity: 1;
+        }
+        .message-box.success {
+            background-color: #06D6A0;
+        }
+        .message-box.error {
+            background-color: #EF476F;
+        }
     </style>
 </head>
 
@@ -72,7 +96,8 @@
                 <a href="#live-data" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Canlı Veri</a>
                 <a href="#city-comparison" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Karşılaştırma</a>
                 <a href="#ai-chat-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Yapay Zeka</a>
-                <a href="#podcast-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Podcast</a> <!-- Yeni nav linki eklendi -->
+                <a href="#podcast-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Podcast</a>
+                <a href="#project-resources" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Kaynaklar</a>
             </div>
         </nav>
     </header>
@@ -98,9 +123,9 @@
                         <p class="text-gray-600">Enerji yoğun, maliyetli ve sadece partikül filtreler. CO₂ yakalama veya O₂ üretme yetenekleri yoktur.</p>
                     </div>
                     <div class="p-8">
-                           <div class="text-6xl md:text-8xl font-black text-[#118AB2] font-heading">50x</div>
-                           <p class="font-bold text-xl mt-2 text-[#073B4C]">DAHA VERİMLİ</p>
-                           <p class="text-gray-600 mt-1">Mikroalgler, karasal bitkilere göre 10 ila 50 kat daha verimli CO₂ yakalar.</p>
+                            <div class="text-6xl md:text-8xl font-black text-[#118AB2] font-heading">50x</div>
+                            <p class="font-bold text-xl mt-2 text-[#073B4C]">DAHA VERİMLİ</p>
+                            <p class="text-gray-600 mt-1">Mikroalgler, karasal bitkilere göre 10 ila 50 kat daha verimli CO₂ yakalar.</p>
                     </div>
                     <div class="bg-white p-8 rounded-xl shadow-lg">
                         <h3 class="font-heading text-2xl font-bold text-[#06D6A0] mb-3">MİKROALG ÇÖZÜMÜ</h3>
@@ -203,14 +228,14 @@
                             </tr>
                         </thead>
                         <tbody id="comparison-table-body" class="divide-y divide-gray-200">
-                               <tr><td colspan="5" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>
+                                <tr><td colspan="5" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>
                         </tbody>
                     </table>
                 </div>
                 
                 <div class="mt-6 p-4 bg-blue-100 border-l-4 border-blue-500 text-blue-800 rounded-r-lg">
                     <h4 class="font-bold">Veri Kaynağı Hakkında</h4>
-                    <p class="text-sm mt-1">Karşılaştırma verileri, dünya genelinde hava kalitesi verilerini sağlayan <strong>IQAir</strong> tarafından sağlanmaktadır. Bu platform, vatandaşların yaşadıkları yerdeki hava kirliliği hakkında bilinçlenmesine yardımcı olmayı hedefler.</p>
+                    <p class="text-sm mt-1">Karşılaştırma verileri, dünya genelinde 30,000'den fazla istasyondan veri toplayan kâr amacı gütmeyen bir kuruluş olan <strong>World Air Quality Index Project</strong> tarafından sağlanmaktadır. Bu platform, vatandaşların yaşadıkları yerdeki hava kirliliği hakkında bilinçlenmesine yardımcı olmayı hedefler.</p>
                 </div>
             </div>
         </section>
@@ -293,45 +318,33 @@
                     </p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg max-w-4xl mx-auto">
+                    <!-- Mevcut podcast iframe -->
                     <iframe width="100%" height="205" allow="encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942850&theme=light" style="border: none; height: 205px; width: 100%;"></iframe>
+                    <!-- Yeni eklenen podcast iframe -->
+                    <iframe width="100%" height="205" allow="encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942850&theme=light" style="border: none; height: 205px; width: 100%; margin-top: 1.5rem;"></iframe>
                 </div>
             </div>
         </section>
         <!-- Yeni Podcast Bölümü Sonu -->
 
-        <!-- Yeni API Ayarları Bölümü Başlangıcı -->
-        <section id="api-settings" class="py-16 md:py-24">
+        <!-- Yeni Proje Kaynakları Bölümü Başlangıcı -->
+        <section id="project-resources" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-[#073B4C]">API Ayarları</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-[#073B4C]">Proje Kaynakları</h2>
                     <p class="mt-4 text-lg text-[#073B4C] max-w-3xl mx-auto">
-                        Harici servisler için API anahtarlarınızı buradan girin.
+                        Projemizin kaynak koduna ve daha fazla teknik bilgiye aşağıdaki bağlantıdan ulaşabilirsiniz.
                     </p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg max-w-2xl mx-auto">
-                    <div class="mb-4">
-                        <label for="aqi-api-key-input" class="block text-gray-700 text-sm font-bold mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1 -mt-1"><path d="M12 17a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h4Z"></path><path d="M12 7V4a2 2 0 0 1 2-2h2v2"></path><path d="M8 7V4a2 2 0 0 0-2-2H4v2"></path></svg>
-                            Hava Kalitesi API Anahtarı (IQAir)
-                        </label>
-                        <input type="text" id="aqi-api-key-input" placeholder="API Anahtarınızı Buraya Girin" value="7e6b0919-4608-4a1e-81b1-9e82b0b1ca4e" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-[#118AB2]">
-                    </div>
-                    <div class="mb-6">
-                        <label for="gemini-api-key-input" class="block text-gray-700 text-sm font-bold mb-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1 -mt-1"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
-                            Gemini API Anahtarı (Yapay Zeka Sohbeti İçin)
-                        </label>
-                        <input type="text" id="gemini-api-key-input" placeholder="API Anahtarınızı Buraya Girin" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-[#118AB2]">
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <button id="apply-api-settings-button" class="bg-[#073B4C] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#118AB2] transition-colors shadow-md">
-                            Ayarları Uygula
-                        </button>
-                    </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg max-w-2xl mx-auto text-center">
+                    <a href="https://github.com/Sev84/mobil-mikroalg-egitim1/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-[#073B4C] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#118AB2] transition-colors shadow-md text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c2.8-.3 5.5-1.4 5.5-6a5 5 0 0 0-1.5-3.5c.2-1.1.2-2.3 0-3.4 0 0-1.4.3-4.5 1.5A12.2 12.2 0 0 0 12 5.3C9.7 5 7.4 5.3 6 6.3c-3.1-1.2-4.5-1.5-4.5-1.5-.2 1.1-.2 2.3 0 3.4A5 5 0 0 0 2 13.8c0 4.6 2.7 5.7 5.5 6a4.8 4.8 0 0 0-1 3.2v4"></path><path d="M9 18c-2.7 0-3.5-1.5-3.5-1.5s.8-.5 1.5-.5c.7 0 1.5.5 2.5.5 1 0 1.8-.5 2.5-.5.7 0 1.5.5 1.5.5s-.8 1.5-3.5 1.5z"></path></svg>
+                        GitHub Deposunu Görüntüle
+                    </a>
                 </div>
             </div>
         </section>
-        <!-- Yeni API Ayarları Bölümü Sonu -->
+        <!-- Yeni Proje Kaynakları Bölümü Sonu -->
 
     </main>
 
@@ -343,33 +356,39 @@
     
     <div id="message-box" class="message-box"></div>
 
-    <!-- Leaflet JS -->
+    <!-- Leaflet JS - Harita için gerekli, önceki kodunuzda yoktu ama ekliyorum -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        document.addEventListener('DOMContentLoaded', async function () { 
-
-            let IQAIR_API_KEY = ""; // Kullanıcı girişi ile güncellenecek
-            let GEMINI_API_KEY = ""; // Kullanıcı girişi ile güncellenecek
+        document.addEventListener('DOMContentLoaded', function () {
             
-            // IQAir API'sinde bazı şehir adları farklı olabilir veya eyalet bilgisi gerekebilir.
-            // Şimdilik doğrudan şehir adlarını kullanıyoruz. Eğer hata alınırsa eyalet eklemek gerekebilir.
+            // API Anahtarları ve Şehirler (Önceki çalışan kodunuzdan alındı)
+            const AQI_API_TOKEN = "08039ad9c3603305b99fc2bcaf155da6e0bfdc31";
             const CITIES = ["Hatay", "Van", "Kahramanmaras", "Gaziantep", "Eskisehir", "Mersin", "Ankara", "Izmir", "Bursa", "Zonguldak"];
+            const GEMINI_API_KEY = "AIzaSyBeXmWsCfg_ruCHn9fCB9-CaUfe-T_UeFg";
             
-            // Firebase yapılandırmasını ve uygulama kimliğini Canvas ortamından al
-            const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-            const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-            const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
+            // Firebase Yapılandırması (Önceki çalışan kodunuzdan alındı)
+            const firebaseConfig = {
+                apiKey: "AIzaSyBvJNWLHjMqlhAdZXSBqHQuPNnnImNZd4Q",
+                authDomain: "biqalgco2-hava-istasyonu.firebaseapp.com",
+                databaseURL: "https://biqalgco2-hava-istasyonu-default-rtdb.firebaseio.com",
+                projectId: "biqalgco2-hava-istasyonu",
+                storageBucket: "biqalgco2-hava-istasyonu.appspot.com",
+                messagingSenderId: "1014289654311",
+                appId: "1:1014289654311:web:e37e2a3ffe78a3cc4ba402"
+            };
+            
             let db;
-            let auth; 
             let lastHistoryData = [];
             let latestSensorData = null;
             let allCityData = [];
-            let chatHistory = []; 
+            let chatHistory = [];
+
+            // Chart.js instances (tanımlamalar burada kalıyor)
+            let co2Chart, tdsChart, lightChart, tempHumidityChart, pbrPerformanceChart;
 
             // Map variables
             let mymap;
@@ -377,12 +396,12 @@
 
             // City coordinates for fallback or fixed locations (like BIQ-Alg station)
             const CITY_COORDINATES = {
-                "Istanbul": [41.0082, 28.9784],
+                "Istanbul": [41.0082, 28.9784], // BIQ-Alg istasyonu için varsayılan konum
                 "Hatay": [36.2048, 36.1648],
                 "Van": [38.4946, 43.3803],
-                "Kahramanmaras": [37.5849, 36.9381], // Corrected for API consistency
+                "Kahramanmaras": [37.5849, 36.9381],
                 "Gaziantep": [37.0667, 37.3833],
-                "Eskisehir": [39.7767, 30.5206], // Corrected for API consistency
+                "Eskisehir": [39.7767, 30.5206],
                 "Mersin": [36.8125, 34.6417],
                 "Ankara": [39.9334, 32.8597],
                 "Izmir": [38.4192, 27.1287],
@@ -390,71 +409,29 @@
                 "Zonguldak": [41.4566, 31.7988]
             };
 
-            // API anahtar input elemanları
-            const aqiApiKeyInput = document.getElementById('aqi-api-key-input');
-            const geminiApiKeyInput = document.getElementById('gemini-api-key-input');
-            const applyApiSettingsButton = document.getElementById('apply-api-settings-button');
-
-            // Sayfa yüklendiğinde veya ayarlar uygulandığında API anahtarlarını al
-            function getApiKeysFromInputs() {
-                IQAIR_API_KEY = aqiApiKeyInput.value.trim();
-                GEMINI_API_KEY = geminiApiKeyInput.value.trim();
-                console.log("API Anahtarları Güncellendi:", { IQAIR_API_KEY: IQAIR_API_KEY ? "SET" : "NOT SET", GEMINI_API_KEY: GEMINI_API_KEY ? "SET" : "NOT SET" });
-            }
-
-            // Uygulamanın API anahtarlarına bağlı kısımlarını yeniden başlatan fonksiyon
-            function initializeApiDependentFeatures() {
-                getApiKeysFromInputs(); // Giriş alanlarından güncel anahtarları al
-                loadExternalCityData(); // Hava kalitesi verilerini yeni anahtarla yükle
-                setupAiChat(); // Yapay zeka sohbetini yeni anahtarla başlat
-                showMessage("API Ayarları uygulandı!", "success");
-            }
-
-            // "Ayarları Uygula" düğmesine tıklama dinleyicisi
-            if (applyApiSettingsButton) {
-                applyApiSettingsButton.addEventListener('click', initializeApiDependentFeatures);
-            }
-
             try {
-                // projectId'nin varlığını kontrol et
-                if (!firebaseConfig.projectId) {
-                    throw new Error("Firebase yapılandırmasında 'projectId' bulunamadı veya geçersiz. Lütfen Firebase projenizin Canvas ortamında doğru yapılandırıldığından emin olun.");
-                }
-
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
-                auth = getAuth(app); 
-                console.log("Firebase başlatıldı.");
-
-                // Haritayı başlat
-                initializeMap();
-
-                // Kimlik doğrulama
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                    console.log("Özel kimlik doğrulama başarılı.");
-                } else {
-                    await signInAnonymously(auth);
-                    console.log("Anonim kimlik doğrulama başarılı.");
-                }
-
-                // Kimlik doğrulama durumu değiştiğinde dinleyiciyi başlat
+                const auth = getAuth(app);
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
-                        console.log("Kullanıcı durumu değişti:", user.uid);
-                        startRealtimeListeners(appId); 
-                        initializeApiDependentFeatures(); // API bağımlı özellikleri başlat
+                        // Firebase kimlik doğrulama başarılı olduğunda dinleyicileri başlat
+                        startRealtimeListeners();
+                        // Harici şehir verilerini yükle
+                        loadExternalCityData();
+                        // Yapay zeka sohbetini başlat
+                        setupAiChat();
                     } else {
-                        console.log("Kullanıcı oturumu kapandı veya anonim oturum başlatılamadı.");
-                        resetLiveDisplay(); // Kullanıcı yoksa canlı veriyi sıfırla
+                        // Kullanıcı yoksa anonim olarak oturum aç
+                        signInAnonymously(auth);
                     }
                 });
-
             } catch(e) { 
-                console.error("Firebase başlatma veya kimlik doğrulama hatası:", e); 
-                showMessage(`Uygulama başlatılırken bir hata oluştu: ${e.message}. Lütfen konsolu kontrol edin.`, "error");
+                console.error("Firebase başlatma hatası:", e); 
+                showMessage("Firebase başlatılamadı. Lütfen konsolu kontrol edin.", "error", 7000);
             }
             
+            // Kirletici bilgileri (önceki kodunuzdan alındı)
             const POLLUTANT_INFO = {
                 pm25: "İnce Partikül Madde (PM2.5)",
                 pm10: "Kaba Partikül Madde (PM10)",
@@ -464,6 +441,17 @@
                 co: "Karbon Monoksit (CO)"
             };
 
+            // Mesaj kutusu gösterme yardımcı fonksiyonu
+            function showMessage(message, type = 'info', duration = 3000) {
+                const messageBox = document.getElementById('message-box');
+                messageBox.textContent = message;
+                messageBox.className = `message-box show ${type}`;
+                setTimeout(() => {
+                    messageBox.classList.remove('show');
+                }, duration);
+            }
+
+            // AQI durumunu belirleme (önceki kodunuzdan alındı)
             function getAqiStatus(aqi) {
                 if (aqi <= 50) return { text: 'İyi', color: 'bg-green-500', textColor: 'text-green-700' };
                 if (aqi <= 100) return { text: 'Orta', color: 'bg-yellow-500', textColor: 'text-yellow-700' };
@@ -473,6 +461,7 @@
                 return { text: 'Tehlikeli', color: 'bg-red-900', textColor: 'text-red-900' };
             }
             
+            // Hava kalitesi durumu (CO2'ye göre) (önceki kodunuzdan alındı)
             function getAirQualityStatus(co2) {
                 if (co2 <= 0) return { text: "---", color: "text-gray-500" };
                 if (co2 <= 1000) return { text: "İyi", color: "text-[#06D6A0]" };
@@ -480,130 +469,103 @@
                 return { text: "Kötü", color: "text-red-500" };
             }
 
-            // Yardımcı fonksiyon: Belirtilen süre kadar bekler
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
+            // Tarih ve saat formatlama
+            function formatDate(timestamp) {
+                if (!timestamp) return 'N/A';
+                // Firestore Timestamp objesi ise toDate() kullan
+                const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+                return date.toLocaleString('tr-TR', {
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
             }
 
+            // World Air Quality Index API'den veri çekme (önceki kodunuzdan alındı)
             async function fetchAirQualityData(city) {
-                if (!IQAIR_API_KEY) {
-                    console.warn("IQAir API Anahtarı ayarlanmamış. Hava kalitesi verileri alınamıyor.");
-                    return null;
-                }
                 try {
-                    // IQAir API'si için endpoint ve parametreler
-                    // IQAir API'si state parametresini zorunlu kılıyor ve bazı şehirler için state adı şehir adıyla aynı değil.
-                    // Şimdilik basitlik adına şehir adını state olarak kullanmaya devam edelim,
-                    // ancak gerçek bir uygulamada bu eşleşmelerin daha doğru yapılması gerekebilir.
-                    const response = await fetch(`https://api.airvisual.com/v2/city?city=${city}&state=${city}&country=Turkey&key=${IQAIR_API_KEY}`);
+                    const response = await fetch(`https://api.waqi.info/feed/${city}/?token=${AQI_API_TOKEN}`);
                     if (!response.ok) {
-                        const errorData = await response.json();
-                        if (response.status === 429) { // Too Many Requests
-                            console.error(`IQAir API Hata Detayı (${city}): API İstek Limiti Aşıldı. Lütfen IQAir API planınızı kontrol edin veya daha sonra tekrar deneyin.`, errorData);
-                            showMessage(`IQAir API Hatası: İstek Limiti Aşıldı. Lütfen IQAir API planınızı kontrol edin.`, "error", 7000);
-                        } else {
-                            console.warn(`Hava kalitesi verisi alınamadı (${city}): HTTP Hata Kodu ${response.status}`, errorData);
-                            showMessage(`Hava kalitesi verisi alınamadı (${city}): ${errorData.data?.message || 'Bilinmeyen Hata'}`, "error", 5000);
-                        }
+                        console.error(`WAQI API hatası (${city}): ${response.status} ${response.statusText}`);
                         return null;
                     }
                     const jsonResponse = await response.json();
-                    if (jsonResponse.status === 'success' && jsonResponse.data && jsonResponse.data.current && jsonResponse.data.location) {
-                        const data = jsonResponse.data;
-                        const latitude = data.location.coordinates[1]; // Latitude
-                        const longitude = data.location.coordinates[0]; // Longitude
-                        return {
-                            aqi: data.current.pollution.aqius, // US AQI
-                            dominentpol: data.current.pollution.maincn, // Dominant pollutant code
-                            time: { s: data.current.weather.ts }, // Timestamp from weather data
-                            lat: latitude,
-                            lon: longitude
-                        };
+                    if (jsonResponse.status === 'ok') {
+                        return jsonResponse.data;
                     } else {
-                        console.warn(`Hava kalitesi verisi alınamadı (${city}): API Yanıt Durumu ${jsonResponse.status} veya eksik veri.`);
+                        console.warn(`WAQI API'den ${city} için geçerli veri alınamadı:`, jsonResponse.data);
                         return null;
                     }
                 } catch (error) {
-                    console.error(`Hata (${city}) için hava kalitesi verisi alınırken:`, error);
-                    showMessage(`Hava kalitesi verisi alınırken bir hata oluştu (${city}).`, "error", 5000);
+                    console.error(`WAQI API çağrılırken hata (${city}):`, error);
                     return null;
                 }
             }
 
+            // Harici şehir hava kalitesi verilerini yükleme (önceki kodunuzdan alındı)
             async function loadExternalCityData() {
                 const tableBody = document.getElementById('comparison-table-body');
                 if (!tableBody) return;
+                
+                tableBody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>`;
+                allCityData = []; // Önceki verileri temizle
 
-                tableBody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>';
-
-                if (!IQAIR_API_KEY) {
-                    tableBody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-red-500">Hava Kalitesi API Anahtarı girilmedi. Karşılaştırma verileri yüklenemiyor.</td></tr>';
-                    allCityData = []; 
-                    updateComparisonTable(); 
-                    return;
-                }
-
-                allCityData = []; // Clear previous data
-
-                // İstanbul verisini ayrı çekiyoruz, çünkü BIQ-Alg istasyonu ile karşılaştırma yapılıyor
-                // IQAir API'si için "Istanbul" şehrini kullanıyoruz.
-                const istanbulData = await fetchAirQualityData('Istanbul');
-                if (istanbulData) {
-                    allCityData.push({ city: "İstanbul", data: istanbulData }); // Display name "İstanbul"
-                }
-                await sleep(500); // 500ms bekleme
-
-                // Diğer şehirlerin verilerini sırayla çekiyoruz (API limitini aşmamak için)
-                for (const city of CITIES) {
-                    if (city === "Istanbul") { // Zaten yukarıda çekildiği için tekrar çekme
-                        continue; 
-                    }
-                    const data = await fetchAirQualityData(city);
-                    if (data) {
-                        allCityData.push({ city: city, data: data });
-                    }
-                    await sleep(500); // Her API çağrısı arasında 500ms bekleme
-                }
-
-                updateComparisonTable(); 
-                updateMapMarkers(); // Veriler yüklendikten sonra haritayı güncelle
+                // İstanbul verisini ayrı çek (BIQ-Alg istasyonu için)
+                const istanbulDataPromise = fetchAirQualityData('Istanbul');
+                const otherCitiesPromises = CITIES.map(city => fetchAirQualityData(city));
+                
+                const [istanbulData, ...otherCitiesData] = await Promise.all([istanbulDataPromise, ...otherCitiesPromises]);
+                
+                // İstanbul verisini allCityData'ya ekle
+                allCityData.push({ city: 'Istanbul', data: istanbulData });
+                // Diğer şehir verilerini allCityData'ya ekle
+                CITIES.forEach((city, i) => {
+                    allCityData.push({ city: city, data: otherCitiesData[i] });
+                });
+                
+                updateComparisonTable();
+                updateMapMarkers(); // Haritayı da güncelle
             }
 
+            // Karşılaştırma tablosunu güncelleme (önceki kodunuzdan alındı ve iyileştirildi)
             function updateComparisonTable() {
                 const tableBody = document.getElementById('comparison-table-body');
                 if (!tableBody) return;
-                tableBody.innerHTML = ''; 
-
-                let hasDataToDisplay = false;
+                tableBody.innerHTML = '';
 
                 // Önce BIQ-Alg istasyonunu ekle
                 if (latestSensorData) {
-                    hasDataToDisplay = true;
                     const localStatus = getAirQualityStatus(latestSensorData.co2);
-                    // İstanbul'un IQAir verisi varsa ana kirleticiyi ondan al, yoksa varsayılanı kullan
-                    const istanbulIQAirData = allCityData.find(c => c.city === 'İstanbul')?.data; 
-                    const mainPollutant = istanbulIQAirData && istanbulIQAirData.dominentpol ? 
-                                          (POLLUTANT_INFO[istanbulIQAirData.dominentpol.toLowerCase()] || istanbulIQAirData.dominentpol.toUpperCase()) : 
-                                          'CO₂ (BIQ-Alg Ölçümü)';
-                    const measurementDate = latestSensorData.timestamp?.toDate ? latestSensorData.timestamp.toDate().toLocaleString('tr-TR') : 'Veri Yok';
+                    // WAQI'den gelen İstanbul verisini bul
+                    const istanbulWAQIData = allCityData.find(c => c.city === 'Istanbul')?.data;
+                    const mainPollutant = istanbulWAQIData && istanbulWAQIData.dominentpol ? (POLLUTANT_INFO[istanbulWAQIData.dominentpol] || istanbulWAQIData.dominentpol.toUpperCase()) : 'CO₂ (Yerel Ölçüm)';
+                    const measurementDate = latestSensorData.timestamp?.toDate ? latestSensorData.timestamp.toDate().toLocaleString('tr-TR') : '...';
 
                     tableBody.innerHTML += `
                         <tr class="bg-blue-50">
                             <td class="p-4 font-semibold text-[#073B4C]">BIQ-Alg İstasyonu (İstanbul)</td>
-                            <td class="p-4 font-bold text-lg">${parseFloat(latestSensorData.co2).toFixed(2)}</td>
+                            <td class="p-4 font-bold text-lg">${latestSensorData.co2 ? parseFloat(latestSensorData.co2).toFixed(0) : '---'}</td>
                             <td class="p-4"><span class="px-3 py-1 text-sm font-bold rounded-full ${localStatus.color.replace('text', 'bg').replace('-500', '-200')} ${localStatus.color}">${localStatus.text}</span></td>
                             <td class="p-4 text-gray-700">${mainPollutant}</td>
                             <td class="p-4 text-gray-700">${measurementDate}</td>
                         </tr>
                     `;
+                } else {
+                     const row = `
+                        <tr class="bg-[#e0f7fa] font-bold text-[#073B4C]">
+                            <td class="p-4">BIQ-Alg İstasyonu (İstanbul)</td>
+                            <td colspan="4" class="p-4 text-center text-gray-500">Veri bekleniyor...</td>
+                        </tr>
+                    `;
+                    tableBody.insertAdjacentHTML('beforeend', row);
                 }
 
                 // Sonra diğer şehirleri ekle
-                allCityData.forEach(cityData => {
-                    // BIQ-Alg istasyonu verisi zaten eklendiği için, İstanbul'un harici verisini tekrar eklemiyoruz
-                    if (cityData.city === 'İstanbul' && latestSensorData) return; 
-
-                    hasDataToDisplay = true;
+                allCityData.filter(c => c.city !== 'Istanbul').forEach(cityData => {
                     const { city, data } = cityData;
                     const row = document.createElement('tr');
                     row.className = 'hover:bg-gray-50';
@@ -625,45 +587,97 @@
                     row.innerHTML = rowContent;
                     tableBody.appendChild(row);
                 });
-
-                if (!hasDataToDisplay && !IQAIR_API_KEY) {
-                    tableBody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-red-500">Hava Kalitesi API Anahtarı girilmedi. Karşılaştırma verileri yüklenemiyor.</td></tr>';
-                } else if (!hasDataToDisplay) {
-                     tableBody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-gray-500">Karşılaştırma verisi bulunamadı.</td></tr>';
-                }
             }
-            
-            const createChart = (ctx, datasets, suggestedMin, suggestedMax) => {
-                if (!ctx) {
-                    console.warn("Grafik bağlamı bulunamadı.");
-                    return null;
-                }
-                return new Chart(ctx, { 
-                    type: 'line', 
-                    data: { labels: [], datasets: datasets }, 
-                    options: { 
-                        animation: false, 
-                        responsive: true, 
-                        maintainAspectRatio: false, 
-                        scales: { 
-                            x: { type: 'time', time: { unit: 'second', displayFormats: { second: 'HH:mm:ss' } }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }}, 
-                            y: { beginAtZero: false, suggestedMin: suggestedMin, suggestedMax: suggestedMax }
-                        }, 
-                        plugins: { legend: { display: true } } 
-                    } 
+
+            // Chart.js grafiklerini başlatma (önceki kodunuzdan alındı ve düzenlendi)
+            function initializeCharts() {
+                const createChart = (ctx, datasets, suggestedMin, suggestedMax) => {
+                    if (!ctx) return null;
+                    return new Chart(ctx, {
+                        type: 'line',
+                        data: { labels: [], datasets: datasets },
+                        options: {
+                            animation: false,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: { type: 'time', time: { unit: 'second', displayFormats: { second: 'HH:mm:ss' } }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }},
+                                y: { beginAtZero: false, suggestedMin: suggestedMin, suggestedMax: suggestedMax }
+                            },
+                            plugins: { legend: { display: true } }
+                        }
+                    });
+                };
+
+                tempHumidityChart = createChart(document.getElementById('tempHumidityChart')?.getContext('2d'), [{ label: 'Sıcaklık (°C)', data: [], borderColor: '#FF6B6B', tension: 0.2 }, { label: 'Nem (%)', data: [], borderColor: '#118AB2', tension: 0.2 }], 10, 40);
+                co2Chart = createChart(document.getElementById('co2Chart')?.getContext('2d'), [{ label: 'CO₂ (ppm)', data: [], borderColor: '#06D6A0', tension: 0.2, fill: { target: 'origin', above: 'rgba(6, 214, 160, 0.1)'} }], 300, 2000);
+                tdsChart = createChart(document.getElementById('tdsChart')?.getContext('2d'), [{ label: 'TDS (ppm)', data: [], borderColor: '#EF476F', tension: 0.2, fill: { target: 'origin', above: 'rgba(239, 71, 111, 0.1)'} }], 50, 600);
+                lightChart = createChart(document.getElementById('lightChart')?.getContext('2d'), [{ label: 'Işık (lux)', data: [], borderColor: '#FFD166', tension: 0.2, fill: { target: 'origin', above: 'rgba(255, 209, 102, 0.1)'} }], 200, 900);
+
+                // PBR Performance Chart (Static Data)
+                const pbrCtx = document.getElementById('pbrPerformanceChart').getContext('2d');
+                pbrPerformanceChart = new Chart(pbrCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Dikey Tübüler FBR', 'Düz Panel FBR', 'Açık Havuz Sistemleri'],
+                        datasets: [{
+                            label: 'CO₂ Giderim Verimliliği (%)',
+                            data: [90, 75, 40], // Örnek veriler
+                            backgroundColor: ['#118AB2', '#073B4C', '#073B4C'],
+                            borderColor: ['#118AB2', '#073B4C', '#073B4C'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: 'Verimlilik (%)',
+                                    color: '#073B4C'
+                                },
+                                ticks: {
+                                    color: '#073B4C'
+                                },
+                                grid: {
+                                    color: 'rgba(7, 59, 76, 0.1)'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#073B4C'
+                                },
+                                grid: {
+                                    color: 'rgba(7, 59, 76, 0.1)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.parsed.y + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
                 });
-            };
+            }
 
-            const tempHumidityChart = createChart(document.getElementById('tempHumidityChart')?.getContext('2d'), [{ label: 'Sıcaklık (°C)', data: [], borderColor: '#FF6B6B', tension: 0.2 }, { label: 'Nem (%)', data: [], borderColor: '#118AB2', tension: 0.2 }], 10, 40);
-            const co2Chart = createChart(document.getElementById('co2Chart')?.getContext('2d'), [{ label: 'CO₂ (ppm)', data: [], borderColor: '#06D6A0', tension: 0.2, fill: { target: 'origin', above: 'rgba(6, 214, 160, 0.1)'} }], 300, 2000);
-            const tdsChart = createChart(document.getElementById('tdsChart')?.getContext('2d'), [{ label: 'TDS (ppm)', data: [], borderColor: '#EF476F', tension: 0.2, fill: { target: 'origin', above: 'rgba(239, 71, 111, 0.1)'} }], 50, 600);
-            const lightChart = createChart(document.getElementById('lightChart')?.getContext('2d'), [{ label: 'Işık (lux)', data: [], borderColor: '#FFD166', tension: 0.2, fill: { target: 'origin', above: 'rgba(255, 209, 102, 0.1)'} }], 200, 900);
-
+            // Tüm grafikleri güncelleme (önceki kodunuzdan alındı)
             function updateAllCharts(history) {
                 lastHistoryData = history;
-                const labels = [], tempData = [], humData = [], co2Data = [], tdsData = [], lightData = []; 
+                const labels = [], tempData = [], humData = [], co2Data = [], tdsData = [], lightData = [];
                 history.forEach(dp => {
-                    if (dp.timestamp && dp.timestamp.toDate) {
+                    if (dp.timestamp && dp.timestamp.toDate) { // Firestore Timestamp objesi kontrolü
                         const timestamp = dp.timestamp.toDate();
                         labels.push(timestamp);
                         tempData.push(isNaN(dp.temperature) ? null : parseFloat(dp.temperature));
@@ -695,226 +709,216 @@
                     lightChart.update();
                 }
                 
-                updateEfficiencyAnalysis(history);
-            }
-
-            // Canlı veri yoksa tüm ekranı sıfırlayan fonksiyon
-            function resetLiveDisplay() {
-                document.getElementById('kpi-co2').innerHTML = `--- <span class="text-lg">ppm</span>`;
-                document.getElementById('kpi-air-quality').innerHTML = `---`;
-                document.getElementById('kpi-light').innerHTML = `--- <span class="text-lg">lux</span>`;
-                document.getElementById('kpi-temp').innerHTML = `-- <span class="text-lg">°C</span>`;
-                document.getElementById('kpi-humidity').innerHTML = `-- <span class="text-lg">%</span>`;
-                document.getElementById('kpi-tds').innerHTML = `--- <span class="text-lg">ppm</span>`;
-
-                if(tempHumidityChart) { 
-                    tempHumidityChart.data.labels = []; 
-                    tempHumidityChart.data.datasets[0].data = []; 
-                    tempHumidityChart.data.datasets[1].data = []; 
-                    tempHumidityChart.update(); 
-                }
-                if(co2Chart){ 
-                    co2Chart.data.labels = []; 
-                    co2Chart.data.datasets[0].data = []; 
-                    co2Chart.update(); 
-                }
-                if(tdsChart){ 
-                    tdsChart.data.labels = []; 
-                    tdsChart.data.datasets[0].data = []; 
-                    tdsChart.update(); 
-                }
-                if(lightChart){ 
-                    lightChart.data.labels = []; 
-                    lightChart.data.datasets[0].data = []; 
-                    lightChart.update(); 
-                }
-                document.getElementById('efficiency-analysis').innerHTML = `<p class="text-center">Yeterli veri toplanıyor...</p>`;
-                updateComparisonTable(); // Karşılaştırma tablosunu da güncelleyebiliriz, BIQ-Alg kısmı boş kalır.
-                updateMapMarkers(); // Haritayı da sıfırla
+                updateEfficiencyAnalysis(history); // Verimlilik analizini de güncelle
             }
             
-            function updateEfficiencyAnalysis(history) {
+            // Haritayı başlatma
+            function initializeMap() {
+                if (mymap) {
+                    mymap.remove(); // Harita zaten varsa kaldır
+                }
+                mymap = L.map('mapid').setView([38.9637, 35.2433], 6); // Türkiye merkezli başlangıç görünümü
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(mymap);
+            }
+
+            // Harita üzerindeki işaretçileri güncelleme
+            function updateMapMarkers() {
+                // Mevcut işaretçileri temizle
+                for (const city in cityMarkers) {
+                    mymap.removeLayer(cityMarkers[city]);
+                }
+                cityMarkers = {};
+
+                // BIQ-Alg istasyonu verisini ekle (İstanbul)
+                if (latestSensorData) {
+                    const aqi = latestSensorData.co2; // Kendi CO2 verinizi AQI olarak kullanıyoruz
+                    const status = getAirQualityStatus(aqi).text; // Kendi fonksiyonunuzdan durum
+                    const color = getAirQualityStatus(aqi).color.replace('text-', 'bg-'); // Rengi Tailwind bg sınıfına çevir
+                    
+                    const markerHtml = `<div class="custom-div-icon" style="background-color:${color}; border-radius:50%; width:40px; height:40px; line-height:40px;">${aqi ? aqi.toFixed(0) : '---'}</div>`;
+                    const customIcon = L.divIcon({
+                        className: 'custom-div-icon',
+                        html: markerHtml,
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 20]
+                    });
+
+                    const istanbulCoords = CITY_COORDINATES["Istanbul"];
+                    const marker = L.marker(istanbulCoords, { icon: customIcon }).addTo(mymap)
+                        .bindPopup(`<b>BIQ-Alg İstasyonu (İstanbul)</b><br>CO₂: ${aqi ? aqi.toFixed(0) : '---'} ppm (${status})`);
+                    cityMarkers["Istanbul"] = marker;
+                }
+
+                // Diğer şehirlerin hava kalitesi verilerini ekle
+                allCityData.filter(c => c.city !== 'Istanbul' && c.data && c.data.aqi).forEach(cityData => {
+                    const aqi = cityData.data.aqi;
+                    const status = getAqiStatus(aqi).text;
+                    const color = getAqiStatus(aqi).color; // Tailwind bg sınıfı olarak geliyor
+                    const markerHtml = `<div class="custom-div-icon" style="background-color:${color}; border-radius:50%; width:40px; height:40px; line-height:40px;">${aqi}</div>`;
+                    const customIcon = L.divIcon({
+                        className: 'custom-div-icon',
+                        html: markerHtml,
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 20]
+                    });
+
+                    const cityCoords = CITY_COORDINATES[cityData.city];
+                    if (cityCoords) {
+                        const mainPollutant = cityData.data.dominentpol ? (POLLUTANT_INFO[cityData.data.dominentpol] || cityData.data.dominentpol.toUpperCase()) : 'N/A';
+                        const marker = L.marker(cityCoords, { icon: customIcon }).addTo(mymap)
+                            .bindPopup(`<b>${cityData.city}</b><br>AQI: ${aqi} (${status})<br>Ana Kirletici: ${mainPollutant}`);
+                        cityMarkers[cityData.city] = marker;
+                    }
+                });
+            }
+
+            // Firestore'dan gerçek zamanlı veri dinleyicilerini başlatma (Güncellendi)
+            function startRealtimeListeners() {
+                const appId = firebaseConfig.projectId; // Firebase projectId'yi appId olarak kullan
+
+                // En son sensör verisi için dinleyici
+                const latestDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sensor_data', 'latest');
+                onSnapshot(latestDocRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        latestSensorData = docSnap.data();
+                        console.log("Latest Sensor Data:", latestSensorData); // Debugging log
+                        updateKpiCards(latestSensorData);
+                        updateComparisonTable(); // Yeni veri geldiğinde karşılaştırma tablosunu güncelle
+                    } else {
+                        console.log(`No latest sensor data found in Firestore at 'artifacts/${appId}/public/data/sensor_data/latest'.`); // Debugging log
+                        showMessage("Sensör verisi bulunamadı. Cihazın bağlı olduğundan emin olun.", "info", 5000);
+                    }
+                }, (error) => {
+                    console.error("Latest sensor data dinlenirken hata:", error);
+                    showMessage("Sensör verileri alınırken hata oluştu. Firebase Güvenlik Kurallarınızı kontrol edin.", "error", 7000);
+                });
+
+                // Sensör geçmişi verileri için dinleyici (son 20 kayıt)
+                const historyCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'sensor_history');
+                onSnapshot(query(historyCollectionRef, orderBy('timestamp', 'desc'), limit(20)), (snapshot) => {
+                    const history = [];
+                    snapshot.forEach(doc => history.push(doc.data()));
+                    console.log("Sensor History Data (raw):", history); // Debugging log
+                    updateAllCharts(history.reverse()); // En eski en başta olacak şekilde ters çevir
+                }, (error) => {
+                    console.error("Sensor history data dinlenirken hata:", error);
+                    showMessage("Geçmiş verileri alınırken hata oluştu. Firebase Güvenlik Kurallarınızı kontrol edin.", "error", 7000);
+                });
+            }
+
+            // KPI kartlarını güncelleme
+            function updateKpiCards(data) {
+                document.getElementById('kpi-co2').textContent = `${data.co2 ? data.co2.toFixed(0) : '---'} ppm`;
+                const airQuality = getAirQualityStatus(data.co2); // Kendi CO2 bazlı durumunuzu kullanın
+                document.getElementById('kpi-air-quality').textContent = airQuality.text;
+                document.getElementById('kpi-air-quality').style.color = airQuality.color;
+                document.getElementById('kpi-light').textContent = `${data.light_value ? data.light_value.toFixed(0) : '---'} lux`;
+                document.getElementById('kpi-temp').textContent = `${data.temperature ? data.temperature.toFixed(1) : '--'} °C`;
+                document.getElementById('kpi-humidity').textContent = `${data.humidity ? data.humidity.toFixed(0) : '--'} %`;
+                document.getElementById('kpi-tds').textContent = `${data.tds_value ? data.tds_value.toFixed(0) : '---'} ppm`;
+            }
+
+            // Yapay Zeka Verimlilik Analizi (önceki kodunuzdan alındı ve düzenlendi)
+            async function updateEfficiencyAnalysis(history) {
                 const analysisElement = document.getElementById('efficiency-analysis');
                 if (!analysisElement || history.length < 3) {
                     if(analysisElement) analysisElement.innerHTML = `<p class="text-center">Yeterli veri toplanıyor...</p>`;
                     return;
                 }
 
-                const avg = (arr) => arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+                analysisElement.innerHTML = `<p class="text-center text-gray-300">Analiz üretiliyor...</p>`;
 
-                // Son 3 veri noktasını al
-                const recentHistory = history.slice(-3);
-                const recentCO2 = recentHistory.map(d => parseFloat(d.co2));
-                const recentTDS = recentHistory.map(d => parseFloat(d.tds_value));
-                const recentLight = recentHistory.map(d => parseFloat(d.light_value));
-                const recentTemp = recentHistory.map(d => parseFloat(d.temperature));
+                // Son 5 veriyi al
+                const recentHistory = history.slice(-5);
+                const latestData = recentHistory[recentHistory.length - 1];
 
-                const avgCO2 = avg(recentCO2);
-                const avgTDS = avg(recentTDS);
-                const avgLight = avg(recentLight);
-                const avgTemp = avg(recentTemp);
-
-                let analysisText = `<ul class="list-disc pl-5 space-y-2">`;
-
-                // CO2 analizi
-                if (avgCO2 < 800) {
-                    analysisText += `<li><strong>CO₂ Seviyesi:</strong> Ortalama ${avgCO2.toFixed(2)} ppm ile hava kalitesi mükemmel. Mikroalgler CO₂'yi etkili bir şekilde dönüştürüyor.</li>`;
-                } else if (avgCO2 < 1500) {
-                    analysisText += `<li><strong>CO₂ Seviyesi:</strong> Ortalama ${avgCO2.toFixed(2)} ppm ile hava kalitesi iyi. Sistem optimum seviyede çalışıyor.</li>`;
-                } else {
-                    analysisText += `<li><strong>CO₂ Seviyesi:</strong> Ortalama ${avgCO2.toFixed(2)} ppm ile hava kalitesi yüksek. FBR'nin CO₂ emilimini artırmak için havalandırma veya ışıklandırma kontrolü düşünülebilir.</li>`;
-                }
-
-                // TDS analizi (su kalitesi)
-                if (avgTDS < 300) {
-                    analysisText += `<li><strong>Su Kalitesi (TDS):</strong> Ortalama ${avgTDS.toFixed(2)} ppm ile su kalitesi ideal. Bu, alg büyümesi için uygun bir ortam sağlar.</li>`;
-                } else if (avgTDS < 500) {
-                    analysisText += `<li><strong>Su Kalitesi (TDS):</strong> Ortalama ${avgTDS.toFixed(2)} ppm ile su kalitesi kabul edilebilir. Düzenli kontrol önerilir.</li>`;
-                } else {
-                    analysisText += `<li><strong>Su Kalitesi (TDS):</strong> Ortalama ${avgTDS.toFixed(2)} ppm ile su kalitesi yüksek. Besin çözeltisi kontrolü veya su değişimi gerekebilir.</li>`;
-                }
-
-                // Işık şiddeti analizi
-                if (avgLight > 500) {
-                    analysisText += `<li><strong>Işık Şiddeti:</strong> Ortalama ${avgLight.toFixed(2)} lux ile ışıklandırma seviyesi alg büyümesi için yeterli.</li>`;
-                } else {
-                    analysisText += `<li><strong>Işık Şiddeti:</strong> Ortalama ${avgLight.toFixed(2)} lux ile ışıklandırma seviyesi düşük olabilir. Alg verimliliği için ışıklandırma artırımı düşünülebilir.</li>`;
-                }
-
-                // Sıcaklık analizi
-                if (avgTemp >= 20 && avgTemp <= 30) {
-                    analysisText += `<li><strong>Sıcaklık:</strong> Ortalama ${avgTemp.toFixed(2)} °C ile sıcaklık alg büyümesi için ideal aralıkta.</li>`;
-                } else {
-                    analysisText += `<li><strong>Sıcaklık:</strong> Ortalama ${avgTemp.toFixed(2)} °C ile sıcaklık ideal aralığın dışında. Alg verimliliğini korumak için sıcaklık kontrolü gerekebilir.</li>`;
-                }
-
-                analysisText += `</ul>`;
-                analysisElement.innerHTML = analysisText;
-            }
-
-            function startRealtimeListeners(currentAppId) { 
-                if (!db) {
-                    console.error("Firestore başlatılmadı. Veri dinlenemiyor.");
-                    showMessage("Firestore bağlantısı kurulamadı. Lütfen konsolu kontrol edin.", "error");
+                if (!latestData) {
+                    analysisElement.innerHTML = `<p class="text-red-300">Analiz için yeterli son veri yok.</p>`;
                     return;
                 }
-                
-                // Belge yolunu doğru şekilde güncelliyoruz
-                const sensorDocRef = doc(db, `artifacts/${currentAppId}/public/data/sensors/current_data`);
-                console.log(`Firestore belgesi dinleniyor: artifacts/${currentAppId}/public/data/sensors/current_data`);
-                showMessage(`Firestore belgesi dinleniyor: artifacts/${currentAppId}/public/data/sensors/current_data`, "info", 3000);
 
+                const prompt = `
+                    BIQ-Alg 0CO2 hava temizleme istasyonundan alınan son sensör verileri ve geçmiş veriler aşağıdadır.
+                    Bu verilere dayanarak, istasyonun genel hava temizleme verimliliği hakkında kısa bir analiz yapın.
+                    Özellikle CO2 seviyelerine, hava kalitesi indeksine ve bu değerlerin zaman içindeki değişimine odaklanın.
+                    Eğer verilerde anormallik veya dikkat çekici bir durum varsa belirtin.
+                    Analizi Türkçe olarak, 100 kelimeyi geçmeyecek şekilde, sade ve anlaşılır bir dille yapın.
 
-                onSnapshot(sensorDocRef, (docSnapshot) => {
-                    if (docSnapshot.exists()) {
-                        latestSensorData = docSnapshot.data(); 
-                        console.log("Yeni sensör verisi alındı:", latestSensorData);
+                    Son Veri:
+                    - CO2: ${latestData.co2} ppm
+                    - Hava Kalitesi İndeksi (AQI): ${getAirQualityStatus(latestData.co2).text} (CO2 bazlı)
+                    - Işık Şiddeti: ${latestData.light_value} lux
+                    - Sıcaklık: ${latestData.temperature}°C
+                    - Nem: ${latestData.humidity}%
+                    - Su Kalitesi (TDS): ${latestData.tds_value} ppm
+                    - Zaman Damgası: ${formatDate(latestData.timestamp)}
 
-                        // KPI kartlarını güncelle
-                        document.getElementById('kpi-co2').innerHTML = `${parseFloat(latestSensorData.co2).toFixed(2)} <span class="text-lg">ppm</span>`;
-                        const airQualityStatus = getAirQualityStatus(latestSensorData.co2);
-                        document.getElementById('kpi-air-quality').innerHTML = `<span class="${airQualityStatus.color}">${airQualityStatus.text}</span>`;
-                        document.getElementById('kpi-light').innerHTML = `${parseFloat(latestSensorData.light_value).toFixed(2)} <span class="text-lg">lux</span>`;
-                        document.getElementById('kpi-temp').innerHTML = `${parseFloat(latestSensorData.temperature).toFixed(1)} <span class="text-lg">°C</span>`;
-                        document.getElementById('kpi-humidity').innerHTML = `${parseFloat(latestSensorData.humidity).toFixed(1)} <span class="text-lg">%</span>`;
-                        document.getElementById('kpi-tds').innerHTML = `${parseFloat(latestSensorData.tds_value).toFixed(2)} <span class="text-lg">ppm</span>`;
-                        
-                        // Geçmiş verileri simüle etmek için sadece en son veriyi içeren bir dizi oluştur (grafikler için)
-                        // Eğer gerçek bir geçmiş verisi koleksiyonunuz varsa, onu dinlemelisiniz.
-                        // Şimdilik sadece tek bir belgeyi dinlediğimiz için, grafikler tek bir noktayı gösterecektir.
-                        // Eğer grafiklerin de geçmiş verileri göstermesini istiyorsanız,
-                        // Firebase'de 'sensor_history' gibi ayrı bir koleksiyon oluşturup onu dinlemeniz gerekir.
-                        updateAllCharts([latestSensorData]); 
-                        updateComparisonTable(); // Canlı veri güncellendiğinde karşılaştırma tablosunu da güncelle
-                        updateMapMarkers(); // Canlı veri güncellendiğinde haritayı da güncelle
-                        showMessage("Canlı sensör verileri güncellendi!", "success", 2000);
-                    } else {
-                        console.log("Firestore'dan henüz sensör verisi alınamadı veya belge mevcut değil.");
-                        showMessage("Canlı sensör verileri bekleniyor. Lütfen veritabanınızı kontrol edin veya 'current_data' belgesinin var olduğundan emin olun.", "warning", 5000);
-                        resetLiveDisplay(); // Veri yoksa ekranı sıfırla
+                    Geçmiş Veriler (Son 5 kayıt, en eskiden en yeniye):
+                    ${recentHistory.map(d => `- Zaman: ${formatDate(d.timestamp)}, CO2: ${d.co2} ppm, AQI: ${getAirQualityStatus(d.co2).text}`).join('\n')}
+                `;
+
+                try {
+                    let chatHistoryForAnalysis = [];
+                    chatHistoryForAnalysis.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistoryForAnalysis };
+                    const apiKey = GEMINI_API_KEY;
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!response.ok) {
+                        const errorBody = await response.json();
+                        console.error("Gemini API hata yanıtı:", errorBody);
+                        throw new Error(`API hatası: ${response.status} ${errorBody.error?.message || response.statusText}`);
                     }
-                }, (error) => {
-                    console.error("Firestore verilerini dinlerken hata oluştu:", error);
-                    showMessage("Canlı veri akışında bir sorun oluştu. Lütfen konsolu ve Firebase güvenlik kurallarınızı kontrol edin.", "error", 7000);
-                    resetLiveDisplay(); // Hata durumunda ekranı sıfırla
-                });
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        analysisElement.innerHTML = `<p>${text}</p>`;
+                    } else {
+                        analysisElement.innerHTML = `<p class="text-red-300">Analiz oluşturulamadı. Geçerli bir yanıt alınamadı.</p>`;
+                        console.error("Gemini API'den beklenen yanıt formatı gelmedi:", result);
+                    }
+                } catch (error) {
+                    console.error("Yapay Zeka analizi sırasında hata:", error);
+                    analysisElement.innerHTML = `<p class="text-red-300">Analiz hatası: ${error.message}</p>`;
+                }
             }
 
-            // CSV İndirme Fonksiyonu
-            document.getElementById('download-csv-button').addEventListener('click', function() {
-                if (lastHistoryData.length === 0) {
-                    showMessage("İndirilecek veri bulunamadı.", "warning");
-                    return;
-                }
-
-                let csvContent = "Tarih,CO2 (ppm),Sıcaklık (°C),Nem (%),TDS (ppm),Işık (lux)\n";
-                lastHistoryData.forEach(item => {
-                    // timestamp'in bir Timestamp nesnesi olup olmadığını kontrol et
-                    const date = item.timestamp && typeof item.timestamp.toDate === 'function' ? item.timestamp.toDate().toLocaleString('tr-TR') : (item.timestamp || '');
-                    csvContent += `${date},${item.co2 || ''},${item.temperature || ''},${item.humidity || ''},${item.tds_value || ''},${item.light_value || ''}\n`;
-                });
-
-                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                const link = document.createElement('a');
-                if (link.download !== undefined) { 
-                    const url = URL.createObjectURL(blob);
-                    link.setAttribute('href', url);
-                    link.setAttribute('download', 'biqalg_sensor_data.csv');
-                    link.style.visibility = 'hidden';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    showMessage("Veriler CSV olarak indirildi!", "success");
-                } else {
-                    showMessage("Tarayıcınız CSV indirmeyi desteklemiyor.", "error");
-                }
-            });
-
-            // Yapay Zeka Sohbet Fonksiyonu
-            async function setupAiChat() {
+            // Yapay Zeka Sohbet Asistanı (önceki kodunuzdan alındı)
+            function setupAiChat() {
                 const chatForm = document.getElementById('chat-form');
                 const chatInput = document.getElementById('chat-input');
                 const chatContainer = document.getElementById('chat-container');
                 const chatSubmitButton = document.getElementById('chat-submit');
 
-                if (!chatForm || !chatInput || !chatContainer || !chatSubmitButton) {
-                    console.error("Chat elemanları bulunamadı.");
-                    return;
-                }
+                if (!chatForm) return;
 
-                chatForm.addEventListener('submit', async function(e) {
+                chatForm.addEventListener('submit', async function (e) {
                     e.preventDefault();
                     const userMessage = chatInput.value.trim();
                     if (!userMessage) return;
 
                     appendMessage(userMessage, 'user');
                     chatInput.value = '';
-                    chatSubmitButton.disabled = true; 
+                    chatSubmitButton.disabled = true;
 
-                    if (!GEMINI_API_KEY) {
-                        appendMessage("Gemini API Anahtarı ayarlanmamış. Yapay zeka sohbeti kullanılamıyor.", 'ai');
-                        chatSubmitButton.disabled = false;
-                        return;
-                    }
+                    chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
 
                     try {
-                        const prompt = `BIQ-Alg 0CO2 projesi hakkında veya aşağıdaki sensör verileriyle ilgili bir soru soruldu. Lütfen Türkçe olarak yanıtlayın.
-                        Proje hakkında genel bilgi: BIQ-Alg 0CO2, afet bölgelerinde hava kalitesini iyileştirmek, oksijen üretmek ve sürdürülebilir enerji sağlamak için mikroalgleri kullanan mobil bir istasyondur. Türkiye'deki 6 Şubat deprem felaketindeki atmosfer verileri kullanılarak geliştirilmiştir.
-                        
-                        Canlı Sensör Verileri (Eğer varsa):
-                        CO2: ${latestSensorData ? latestSensorData.co2 : 'Yok'} ppm
-                        Hava Kalitesi Durumu: ${latestSensorData ? getAirQualityStatus(latestSensorData.co2).text : 'Yok'}
-                        Işık Şiddeti: ${latestSensorData ? latestSensorData.light_value : 'Yok'} lux
-                        Sıcaklık: ${latestSensorData ? latestSensorData.temperature : 'Yok'} °C
-                        Nem: ${latestSensorData ? latestSensorData.humidity : 'Yok'} %
-                        Su Kalitesi (TDS): ${latestSensorData ? latestSensorData.tds_value : 'Yok'} ppm
-
-                        Kullanıcının sorusu: ${userMessage}`;
-
-                        chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
-
                         const payload = { contents: chatHistory };
-                        const apiKey = GEMINI_API_KEY; 
+                        const apiKey = GEMINI_API_KEY;
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                         const response = await fetch(apiUrl, {
@@ -923,189 +927,100 @@
                             body: JSON.stringify(payload)
                         });
 
+                        if (!response.ok) {
+                            const errorBody = await response.json();
+                            console.error("Gemini API hata yanıtı:", errorBody);
+                            throw new Error(`API hatası: ${response.status} ${errorBody.error?.message || response.statusText}`);
+                        }
+
                         const result = await response.json();
-                        let aiResponseText = "Üzgünüm, şu anda bir yanıt oluşturamıyorum. Lütfen daha sonra tekrar deneyin.";
 
                         if (result.candidates && result.candidates.length > 0 &&
                             result.candidates[0].content && result.candidates[0].content.parts &&
                             result.candidates[0].content.parts.length > 0) {
-                            aiResponseText = result.candidates[0].content.parts[0].text;
-                        } else if (result.error) {
-                            aiResponseText = `API Hatası: ${result.error.message}`;
-                            console.error("Gemini API hatası:", result.error);
+                            const aiResponseText = result.candidates[0].content.parts[0].text;
+                            appendMessage(aiResponseText, 'ai');
+                            chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
+                        } else {
+                            appendMessage("Üzgünüm, yanıt alamadım. Lütfen tekrar deneyin.", 'ai');
+                            console.error("Gemini API'den beklenen yanıt formatı gelmedi:", result);
                         }
-
-                        appendMessage(aiResponseText, 'ai');
-                        chatHistory.push({ role: "model", parts: [{ text: aiResponseText }] });
-
                     } catch (error) {
-                        console.error("Yapay zeka yanıtı alınırken hata oluştu:", error);
-                        appendMessage("Yapay zeka ile iletişim kurulurken bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.", 'ai');
+                        console.error("Yapay Zeka sohbeti sırasında hata:", error);
+                        appendMessage(`Bir hata oluştu: ${error.message}. Lütfen API Anahtarınızı kontrol edin.`, 'ai');
                     } finally {
-                        chatSubmitButton.disabled = false; 
-                        chatContainer.scrollTop = chatContainer.scrollHeight; 
+                        chatSubmitButton.disabled = false;
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
                     }
                 });
 
                 function appendMessage(text, sender) {
-                    const messageElement = document.createElement('div');
-                    messageElement.classList.add('chat-message', sender);
-                    const pElement = document.createElement('p');
-                    pElement.textContent = text;
-                    messageElement.appendChild(pElement);
-                    chatContainer.appendChild(messageElement);
-                    chatContainer.scrollTop = chatContainer.scrollHeight; 
+                    const messageDiv = document.createElement('div');
+                    messageDiv.classList.add('chat-message', sender);
+                    const p = document.createElement('p');
+                    p.textContent = text;
+                    messageDiv.appendChild(p);
+                    chatContainer.appendChild(messageDiv);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
                 }
             }
 
-            // Genel Mesaj Kutusu Fonksiyonu
-            function showMessage(message, type = 'info', duration = 3000) {
-                const messageBox = document.getElementById('message-box');
-                if (!messageBox) return;
-
-                messageBox.textContent = message;
-                messageBox.className = 'message-box fixed bottom-4 right-4 p-4 rounded-lg shadow-lg text-white z-[1000] transition-all duration-300 transform translate-y-full opacity-0';
-
-                if (type === 'success') {
-                    messageBox.classList.add('bg-green-500');
-                } else if (type === 'error') {
-                    messageBox.classList.add('bg-red-500');
-                } else if (type === 'warning') {
-                    messageBox.classList.add('bg-orange-500');
-                } else {
-                    messageBox.classList.add('bg-gray-700');
+            // CSV İndirme
+            function downloadCSV() {
+                if (lastHistoryData.length === 0) {
+                    showMessage("İndirilecek veri yok.", "info");
+                    return;
                 }
 
-                // Show the message box
-                setTimeout(() => {
-                    messageBox.classList.remove('translate-y-full', 'opacity-0');
-                    messageBox.classList.add('translate-y-0', 'opacity-100');
-                }, 100); 
-
-                // Hide the message box after duration
-                setTimeout(() => {
-                    messageBox.classList.remove('translate-y-0', 'opacity-100');
-                    messageBox.classList.add('translate-y-full', 'opacity-0');
-                }, duration);
-            }
-
-            // PBR Performance Chart (Sabit veri ile örnek)
-            const pbrCtx = document.getElementById('pbrPerformanceChart')?.getContext('2d');
-            if (pbrCtx) {
-                new Chart(pbrCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Dikey Tübüler FBR', 'Düz Panel FBR', 'Açık Havuz Sistemleri'],
-                        datasets: [{
-                            label: 'CO₂ Yakalama Verimliliği (%)',
-                            data: [85, 70, 40], // Örnek veriler
-                            backgroundColor: ['#118AB2', '#073B4C', '#06D6A0'],
-                            borderColor: ['#118AB2', '#073B4C', '#06D6A0'],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                suggestedMax: 100,
-                                title: {
-                                    display: true,
-                                    text: 'Verimlilik (%)'
-                                }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                display: false
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Harita başlatma fonksiyonu
-            function initializeMap() {
-                // Haritayı başlat ve görünümünü Türkiye'ye ayarla
-                // [39.0, 35.0] Türkiye'nin yaklaşık merkezi, 6 zoom seviyesi ülke genelini gösterir
-                mymap = L.map('mapid').setView([39.0, 35.0], 6); 
-
-                // OpenStreetMap katmanını ekle
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> katkıda bulunanlar'
-                }).addTo(mymap);
-            }
-
-            // Harita işaretleyicilerini güncelleme fonksiyonu
-            function updateMapMarkers() {
-                // Mevcut işaretleyicileri temizle
-                for (const key in cityMarkers) {
-                    mymap.removeLayer(cityMarkers[key]);
-                }
-                cityMarkers = {};
-
-                // BIQ-Alg İstasyonu (İstanbul) için işaretleyici ekle
-                if (latestSensorData && CITY_COORDINATES["Istanbul"]) {
-                    const aqi = parseFloat(latestSensorData.co2).toFixed(0); // CO2 değerini AQI olarak kullanıyoruz
-                    const status = getAirQualityStatus(latestSensorData.co2);
-                    const lat = CITY_COORDINATES["Istanbul"][0];
-                    const lon = CITY_COORDINATES["Istanbul"][1];
-                    const popupContent = `<b>BIQ-Alg İstasyonu (İstanbul)</b><br>HKİ: ${aqi}<br>Durum: ${status.text}<br>CO₂: ${parseFloat(latestSensorData.co2).toFixed(2)} ppm`;
-                    addMarkerToMap("BIQ-Alg İstanbul", lat, lon, aqi, popupContent);
-                }
-
-                // Diğer şehirler için IQAir verilerinden işaretleyiciler ekle
-                allCityData.forEach(cityData => {
-                    const { city, data } = cityData;
-                    // Eğer şehir İstanbul ise ve BIQ-Alg verisi zaten eklendiyse, tekrar etme
-                    if (city === 'İstanbul' && latestSensorData) return; 
-
-                    if (data && data.aqi && data.lat && data.lon) {
-                        const aqi = data.aqi;
-                        const status = getAqiStatus(aqi);
-                        const pollutantCode = (data.dominentpol || '-').toLowerCase();
-                        const pollutantDescription = POLLUTANT_INFO[pollutantCode] || pollutantCode.toUpperCase();
-                        const popupContent = `<b>${city}</b><br>HKI: ${aqi}<br>Durum: ${status.text}<br>Ana Kirletici: ${pollutantDescription}`;
-                        addMarkerToMap(city, data.lat, data.lon, aqi, popupContent);
-                    }
-                });
-            }
-
-            // Haritaya işaretleyici ekleme fonksiyonu
-            function addMarkerToMap(cityName, lat, lon, aqi, popupContent) {
-                const status = getAqiStatus(aqi);
-                const markerColor = status.color.replace('bg-', ''); // Tailwind bg-color'dan renk adını al
-
-                // Tailwind renk adlarını hex kodlarına dönüştürme (yaklaşık değerler)
-                function tailwindColorToHex(colorName) {
-                    switch (colorName) {
-                        case 'green-500': return '#22C55E';
-                        case 'yellow-500': return '#EAB308';
-                        case 'orange-500': return '#F97316';
-                        case 'red-500': return '#EF4444';
-                        case 'purple-700': return '#6D28D9';
-                        case 'red-900': return '#7F1D1D';
-                        default: return '#3B82F6'; // Varsayılan mavi
-                    }
-                }
-
-                // Özel div tabanlı ikon oluşturma
-                const customIcon = L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div style="background-color: ${tailwindColorToHex(markerColor)}; width: 24px; height: 24px; border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">${aqi}</div>`,
-                    iconSize: [24, 24], // İkon boyutu
-                    iconAnchor: [12, 12], // İkonun merkez noktası
-                    popupAnchor: [0, -12] // Pop-up'ın açılacağı nokta
+                // CSV başlıkları
+                const headers = ["Timestamp", "CO2 (ppm)", "Temperature (°C)", "Humidity (%)", "TDS (ppm)", "Light (lux)"];
+                
+                // Verileri CSV formatına dönüştür
+                const csvRows = [headers.join(',')];
+                lastHistoryData.forEach(data => {
+                    const row = [
+                        formatDate(data.timestamp),
+                        data.co2,
+                        data.temperature,
+                        data.humidity,
+                        data.tds_value,
+                        data.light_value
+                    ].map(item => `"${item}"`).join(',');
+                    csvRows.push(row);
                 });
 
-                const marker = L.marker([lat, lon], { icon: customIcon }).addTo(mymap);
-                marker.bindPopup(popupContent);
-                cityMarkers[cityName] = marker;
+                const csvString = csvRows.join('\n');
+                const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `BIQ-Alg_Sensor_Data_${new Date().toISOString().slice(0, 10)}.csv`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showMessage("Veriler CSV olarak indirildi!", "success");
             }
 
-        }); // DOMContentLoaded event listener'ın kapanış parantezi
+            // İndirme butonuna event listener ekle
+            const downloadCsvButton = document.getElementById('download-csv-button');
+            if (downloadCsvButton) {
+                downloadCsvButton.addEventListener('click', downloadCSV);
+            }
+
+            // Uygulama başlangıcı
+            initializeCharts();
+            initializeMap();
+            // initFirebase() zaten DOMContentLoaded içinde çağrılıyor ve auth durumuna göre diğer fonksiyonları tetikliyor.
+            // loadExternalCityData() ve setupAiChat() artık initFirebase içindeki onAuthStateChanged ile tetikleniyor.
+
+            // Navigasyon linkleri için aktif sınıfı ekleme
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
     </script>
 </body>
 </html>
