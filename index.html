@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <!-- Leaflet CSS - Harita için gerekli, önceki kodunuzda yoktu ama ekliyorum -->
+    <!-- Leaflet CSS - Harita için gerekli -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -356,7 +356,7 @@
     
     <div id="message-box" class="message-box"></div>
 
-    <!-- Leaflet JS - Harita için gerekli, önceki kodunuzda yoktu ama ekliyorum -->
+    <!-- Leaflet JS - Harita için gerekli -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -365,19 +365,18 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             
-            // API Anahtarları ve Şehirler (Önceki çalışan kodunuzdan alındı)
+            // API Anahtarları ve Şehirler
             const AQI_API_TOKEN = "08039ad9c3603305b99fc2bcaf155da6e0bfdc31";
             const CITIES = ["Hatay", "Van", "Kahramanmaras", "Gaziantep", "Eskisehir", "Mersin", "Ankara", "Izmir", "Bursa", "Zonguldak"];
             const GEMINI_API_KEY = "AIzaSyBeXmWsCfg_ruCHn9fCB9-CaUfe-T_UeFg";
             
-            // Firebase Yapılandırması (Önceki çalışan kodunuzdan alındı)
+            // Firebase Yapılandırması
             const firebaseConfig = {
                 apiKey: "AIzaSyBvJNWLHjMqlhAdZXSBqHQuPNnnImNZd4Q",
                 authDomain: "biqalgco2-hava-istasyonu.firebaseapp.com",
                 databaseURL: "https://biqalgco2-hava-istasyonu-default-rtdb.firebaseio.com",
                 projectId: "biqalgco2-hava-istasyonu",
                 storageBucket: "biqalgco2-hava-istasyonu.appspot.com",
-                messagingSenderId: "1014289654311",
                 appId: "1:1014289654311:web:e37e2a3ffe78a3cc4ba402"
             };
             
@@ -387,7 +386,7 @@
             let allCityData = [];
             let chatHistory = [];
 
-            // Chart.js instances (tanımlamalar burada kalıyor)
+            // Chart.js instances
             let co2Chart, tdsChart, lightChart, tempHumidityChart, pbrPerformanceChart;
 
             // Map variables
@@ -431,7 +430,7 @@
                 showMessage("Firebase başlatılamadı. Lütfen konsolu kontrol edin.", "error", 7000);
             }
             
-            // Kirletici bilgileri (önceki kodunuzdan alındı)
+            // Kirletici bilgileri
             const POLLUTANT_INFO = {
                 pm25: "İnce Partikül Madde (PM2.5)",
                 pm10: "Kaba Partikül Madde (PM10)",
@@ -451,7 +450,7 @@
                 }, duration);
             }
 
-            // AQI durumunu belirleme (önceki kodunuzdan alındı)
+            // AQI durumunu belirleme
             function getAqiStatus(aqi) {
                 if (aqi <= 50) return { text: 'İyi', color: 'bg-green-500', textColor: 'text-green-700' };
                 if (aqi <= 100) return { text: 'Orta', color: 'bg-yellow-500', textColor: 'text-yellow-700' };
@@ -461,7 +460,7 @@
                 return { text: 'Tehlikeli', color: 'bg-red-900', textColor: 'text-red-900' };
             }
             
-            // Hava kalitesi durumu (CO2'ye göre) (önceki kodunuzdan alındı)
+            // Hava kalitesi durumu (CO2'ye göre)
             function getAirQualityStatus(co2) {
                 if (co2 <= 0) return { text: "---", color: "text-gray-500" };
                 if (co2 <= 1000) return { text: "İyi", color: "text-[#06D6A0]" };
@@ -485,7 +484,7 @@
                 });
             }
 
-            // World Air Quality Index API'den veri çekme (önceki kodunuzdan alındı)
+            // World Air Quality Index API'den veri çekme
             async function fetchAirQualityData(city) {
                 try {
                     const response = await fetch(`https://api.waqi.info/feed/${city}/?token=${AQI_API_TOKEN}`);
@@ -506,7 +505,7 @@
                 }
             }
 
-            // Harici şehir hava kalitesi verilerini yükleme (önceki kodunuzdan alındı)
+            // Harici şehir hava kalitesi verilerini yükleme
             async function loadExternalCityData() {
                 const tableBody = document.getElementById('comparison-table-body');
                 if (!tableBody) return;
@@ -531,7 +530,7 @@
                 updateMapMarkers(); // Haritayı da güncelle
             }
 
-            // Karşılaştırma tablosunu güncelleme (önceki kodunuzdan alındı ve iyileştirildi)
+            // Karşılaştırma tablosunu güncelleme
             function updateComparisonTable() {
                 const tableBody = document.getElementById('comparison-table-body');
                 if (!tableBody) return;
@@ -589,7 +588,7 @@
                 });
             }
 
-            // Chart.js grafiklerini başlatma (önceki kodunuzdan alındı ve düzenlendi)
+            // Chart.js grafiklerini başlatma
             function initializeCharts() {
                 const createChart = (ctx, datasets, suggestedMin, suggestedMax) => {
                     if (!ctx) return null;
@@ -672,7 +671,7 @@
                 });
             }
 
-            // Tüm grafikleri güncelleme (önceki kodunuzdan alındı)
+            // Tüm grafikleri güncelleme
             function updateAllCharts(history) {
                 lastHistoryData = history;
                 const labels = [], tempData = [], humData = [], co2Data = [], tdsData = [], lightData = [];
@@ -777,10 +776,12 @@
 
             // Firestore'dan gerçek zamanlı veri dinleyicilerini başlatma (Güncellendi)
             function startRealtimeListeners() {
-                const appId = firebaseConfig.projectId; // Firebase projectId'yi appId olarak kullan
+                // appId'yi doğrudan 'default-app-id' olarak ayarla
+                const appId = 'default-app-id';
 
                 // En son sensör verisi için dinleyici
-                const latestDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sensor_data', 'latest');
+                // Kullanıcının belirttiği yolu kullan: /artifacts/{appId}/public/data/sensors/current_data
+                const latestDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sensors', 'current_data');
                 onSnapshot(latestDocRef, (docSnap) => {
                     if (docSnap.exists()) {
                         latestSensorData = docSnap.data();
@@ -788,7 +789,7 @@
                         updateKpiCards(latestSensorData);
                         updateComparisonTable(); // Yeni veri geldiğinde karşılaştırma tablosunu güncelle
                     } else {
-                        console.log(`No latest sensor data found in Firestore at 'artifacts/${appId}/public/data/sensor_data/latest'.`); // Debugging log
+                        console.log(`No latest sensor data found in Firestore at 'artifacts/${appId}/public/data/sensors/current_data'.`); // Debugging log
                         showMessage("Sensör verisi bulunamadı. Cihazın bağlı olduğundan emin olun.", "info", 5000);
                     }
                 }, (error) => {
@@ -797,6 +798,7 @@
                 });
 
                 // Sensör geçmişi verileri için dinleyici (son 20 kayıt)
+                // Geçmiş verileri için yeni bir yol belirtilmediği için mevcut yapıyı koruyoruz
                 const historyCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'sensor_history');
                 onSnapshot(query(historyCollectionRef, orderBy('timestamp', 'desc'), limit(20)), (snapshot) => {
                     const history = [];
@@ -821,7 +823,7 @@
                 document.getElementById('kpi-tds').textContent = `${data.tds_value ? data.tds_value.toFixed(0) : '---'} ppm`;
             }
 
-            // Yapay Zeka Verimlilik Analizi (önceki kodunuzdan alındı ve düzenlendi)
+            // Yapay Zeka Verimlilik Analizi
             async function updateEfficiencyAnalysis(history) {
                 const analysisElement = document.getElementById('efficiency-analysis');
                 if (!analysisElement || history.length < 3) {
@@ -896,7 +898,7 @@
                 }
             }
 
-            // Yapay Zeka Sohbet Asistanı (önceki kodunuzdan alındı)
+            // Yapay Zeka Sohbet Asistanı
             function setupAiChat() {
                 const chatForm = document.getElementById('chat-form');
                 const chatInput = document.getElementById('chat-input');
@@ -934,7 +936,7 @@
                         }
 
                         const result = await response.json();
-
+                        
                         if (result.candidates && result.candidates.length > 0 &&
                             result.candidates[0].content && result.candidates[0].content.parts &&
                             result.candidates[0].content.parts.length > 0) {
