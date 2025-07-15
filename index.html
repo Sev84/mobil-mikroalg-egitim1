@@ -97,6 +97,22 @@
         .pulse-animation {
             animation: pulse 2s infinite;
         }
+
+        /* Aktif Kullanıcı İkonu Animasyonu */
+        @keyframes user-pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(17, 138, 178, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(17, 138, 178, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(17, 138, 178, 0); }
+        }
+        .user-location-marker {
+            background-color: #118AB2;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: user-pulse-animation 1.5s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -104,76 +120,53 @@
 
     <header class="bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-md">
         <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <a href="#hero" class="flex items-center">
+            <a href="#hero" class="flex items-center flex-shrink-0">
                 <img src="logo111.png" alt="BIQ-Alg 0CO2 Proje Logosu" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/150x50/FFFFFF/073B4C?text=BiQ-Alg+0CO2';">
             </a>
-            <!-- Masaüstü Menüsü -->
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="#problem-solution" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+            <!-- Masaüstü ve Mobil Uyumlu Menü -->
+            <div class="flex items-center space-x-2 sm:space-x-4 overflow-x-auto">
+                <a href="#problem-solution" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
                     <span>Çözüm</span>
                 </a>
-                <a href="#technology" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a href="#technology" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                     <span>Teknoloji</span>
                 </a>
-                <a href="#live-data" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a href="#live-data" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
                     <span>Canlı Veri</span>
                 </a>
-                <a href="#city-comparison" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a href="#city-comparison" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18.7 8a6 6 0 0 0-8.4-8.4"></path><path d="M13 10.7a6 6 0 0 0 8.4 8.4"></path></svg>
                     <span>Karşılaştırma</span>
                 </a>
-                <a href="#ai-chat-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a href="#ai-chat-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
                     <span>Yapay Zeka</span>
                 </a>
-                <a href="#podcast-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a href="#podcast-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
                     <span>Podcast</span>
                 </a>
-                <a href="#project-resources" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a href="#project-resources" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     <span>Kaynaklar</span>
                 </a>
-                <a href="#stats-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a href="#stats-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     <span>İstatistikler</span>
                 </a>
-                <a id="settings-nav-link" href="#api-key-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a id="settings-nav-link" href="#api-key-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 7.8C14.2 6.5 12.2 6.5 11 7.8s-1.2 3.2 0 4.5l4.2 4.2c1.2 1.2 3.2 1.2 4.5 0s1.2-3.2 0-4.5L15.5 7.8z"></path><path d="m12.2 11 4.5 4.5"></path><path d="M7.8 15.5c-1.2-1.2-1.2-3.2 0-4.5l4.2-4.2c1.2-1.2 3.2-1.2 4.5 0"></path></svg>
                     <span>Ayarlar</span>
                 </a>
-                <a id="share-button" href="#" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                <a id="share-button" href="#" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors flex-shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
                     <span>Paylaş</span>
                 </a>
             </div>
-            <!-- Mobil Menü Butonu -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-600 hover:text-[#118AB2] focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
         </nav>
-        <!-- Mobil Menü -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#problem-solution" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Çözüm</a>
-                <a href="#technology" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Teknoloji</a>
-                <a href="#live-data" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Canlı Veri</a>
-                <a href="#city-comparison" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Karşılaştırma</a>
-                <a href="#ai-chat-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Yapay Zeka</a>
-                <a href="#podcast-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Podcast</a>
-                <a href="#project-resources" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Kaynaklar</a>
-                <a href="#stats-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">İstatistikler</a>
-                <a href="#api-key-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Ayarlar</a>
-                <a id="mobile-share-button" href="#" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Paylaş</a>
-            </div>
-        </div>
     </header>
 
     <main>
@@ -319,8 +312,8 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12 md:mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold font-heading text-[#073B4C]">Hava Kalitesi Haritası</h2>
-                    <p class="mt-4 text-lg text-[#073B4C] max-w-3xl mx-auto">
-                        Deprem bölgeleri ve BIQ-Alg istasyonunun hava kalitesi verilerini harita üzerinde görselleştirin.
+                    <p id="map-online-users-count" class="mt-4 text-lg text-[#073B4C] max-w-3xl mx-auto">
+                        <!-- Aktif kullanıcı sayısı buraya gelecek -->
                     </p>
                 </div>
                 <div id="mapid" class="w-full h-[500px] rounded-xl shadow-lg border border-gray-200"></div>
@@ -716,25 +709,24 @@
             function updateUserLocationMarkers(visitors) {
                 if (!mymap) return;
 
-                // Mevcut kullanıcı ikonlarını temizle
                 Object.values(userLocationMarkers).forEach(marker => mymap.removeLayer(marker));
                 userLocationMarkers = {};
 
-                const userIconSvg = `<svg viewBox="0 0 32 32" fill="#118AB2" style="background:rgba(255,255,255,0.7); border-radius: 50%; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.4);"><path d="M16 4a5 5 0 100 10 5 5 0 000-10zm-7 14c0-3.9 3.1-7 7-7s7 3.1 7 7v2h-2v-2c0-2.8-2.2-5-5-5s-5 2.2-5 5v2H9v-2z"></path></svg>`;
-                const userIcon = L.divIcon({
-                    html: userIconSvg,
-                    className: '',
-                    iconSize: [32, 32],
-                    iconAnchor: [16, 32],
-                    popupAnchor: [0, -32]
-                });
-
+                const userIconSvg = `<svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`;
+                
                 visitors.forEach((visitor, index) => {
                     if (visitor.lat && visitor.lng) {
+                         const userIcon = L.divIcon({
+                            html: `<div class="user-location-marker">${userIconSvg}</div>`,
+                            className: '', // Stiller doğrudan HTML içinde ve CSS'de tanımlandığı için boş
+                            iconSize: [32, 32],
+                            iconAnchor: [16, 16],
+                            popupAnchor: [0, -16]
+                        });
                         const marker = L.marker([visitor.lat, visitor.lng], { icon: userIcon })
                             .addTo(mymap)
                             .bindPopup(`<b>Ziyaretçi</b><br>${visitor.location}`);
-                        userLocationMarkers[index] = marker;
+                        userLocationMarkers[visitor.id] = marker;
                     }
                 });
             }
@@ -793,6 +785,7 @@
                     batch.commit().catch(err => console.error("Eski kullanıcıları temizleme hatası:", err));
                     document.getElementById('online-users-display').textContent = onlineCount;
                     document.getElementById('online-users-time').textContent = `Son Güncelleme: ${new Date().toLocaleTimeString('tr-TR')}`;
+                    document.getElementById('map-online-users-count').innerHTML = `<span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2 animate-ping"></span>${onlineCount} kullanıcı şu an haritayı görüntülüyor.`;
                 });
                 
                 if (navigator.geolocation) {
@@ -824,6 +817,7 @@
                     }
                     snapshot.forEach(doc => {
                         const visitor = doc.data();
+                        visitor.id = doc.id;
                         visitorsForMap.push(visitor);
                         const li = document.createElement('li');
                         li.className = 'py-3 flex justify-between items-center';
@@ -954,8 +948,8 @@
                 const modalContent = shareModal.querySelector('div');
 
                 const shareUrl = 'https://sev84.github.io/mobil-mikroalg-egitim1/';
-                const shareText = 'Afet sonrası temiz nefes için geliştirilen BIQ-Alg 0CO2 projesine göz atın!';
-                const subject = encodeURIComponent('BIQ-Alg 0CO2 Projesi');
+                const shareText = 'Geleceğe nefes ol! 🌬️ Afet bölgelerine umut taşıyan, mikroalg teknolojisiyle havayı temizleyen BIQ-Alg 0CO2 projesini keşfet ve bu yeniliği paylaşarak destek ol. Canlı verileri buradan takip et:';
+                const subject = encodeURIComponent('BIQ-Alg 0CO2: Afet Sonrası Temiz Hava Projesi');
                 const body = encodeURIComponent(shareText + '\n\n' + shareUrl);
 
 
