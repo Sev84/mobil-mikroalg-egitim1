@@ -29,6 +29,7 @@
             line-height: 1rem;
             padding: 0.5rem;
             border-radius: 0.5rem;
+            flex-shrink: 1; /* Esnemeye izin ver */
         }
         .nav-link.active { color: #118AB2; font-weight: 700; }
         [title]:hover { cursor: help; }
@@ -124,7 +125,7 @@
                 <img src="logo111.png" alt="BIQ-Alg 0CO2 Proje Logosu" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/150x50/FFFFFF/073B4C?text=BiQ-Alg+0CO2';">
             </a>
             <!-- GÜNCELLENMİŞ: Esnek ve Yan Yana Duran Menü -->
-            <div class="flex-grow flex items-center justify-end flex-wrap gap-x-1 sm:gap-x-2 md:gap-x-3 lg:gap-x-4">
+            <div class="flex-grow flex items-center justify-end flex-nowrap gap-x-1 sm:gap-x-2 md:gap-x-3 lg:gap-x-4">
                 <a href="#problem-solution" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
                     <span>Çözüm</span>
@@ -170,6 +171,7 @@
     </header>
 
     <main>
+        <!-- Diğer section'lar burada olduğu gibi kalır... -->
         <section id="hero" class="py-20 md:py-32" style="background: linear-gradient(135deg, #118AB2 0%, #06D6A0 100%);">
             <div class="container mx-auto px-6 text-center text-white">
                 <h1 class="text-4xl md:text-6xl font-bold font-heading mb-4 tracking-tight">Afet Sonrası Temiz Nefes: <br> BIQ-Alg 0CO2</h1>
