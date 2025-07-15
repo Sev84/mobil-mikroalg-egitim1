@@ -108,7 +108,6 @@
     </header>
 
     <main>
-        <!-- Diğer section'lar burada olduğu gibi kalır... -->
         <section id="hero" class="py-20 md:py-32" style="background: linear-gradient(135deg, #118AB2 0%, #06D6A0 100%);">
             <div class="container mx-auto px-6 text-center text-white">
                 <h1 class="text-4xl md:text-6xl font-bold font-heading mb-4 tracking-tight">Afet Sonrası Temiz Nefes: <br> BIQ-Alg 0CO2</h1>
@@ -677,7 +676,6 @@
                 const analysisElement = document.getElementById('efficiency-analysis');
                 if (!analysisElement) return;
 
-                // API Anahtarı kontrolü
                 if (!userGeminiApiKey) {
                     analysisElement.innerHTML = `<p class="text-center text-yellow-300">Analiz için lütfen Ayarlar bölümünden geçerli bir Gemini API Anahtarı girin.</p>`;
                     return;
@@ -694,7 +692,24 @@
                     analysisElement.innerHTML = `<p class="text-red-300">Analiz için yeterli son veri yok.</p>`;
                     return;
                 }
-                const prompt = `BIQ-Alg 0CO2 hava temizleme istasyonundan alınan son sensör verileri ve geçmiş veriler aşağıdadır...`; // Prompt içeriği aynı
+                
+                const prompt = `Sen BIQ-Alg 0CO2 projesi için bir uzman veri analistisin.
+Görevin, YALNIZCA aşağıda sağlanan verilere dayanarak kısa ve anlaşılır bir verimlilik analizi yapmaktır.
+Hava temizleme verimliliğini değerlendirmek için aşağıdaki gerçek zamanlı sensör verilerini analiz et. Özellikle CO2 seviyesindeki trende odaklan. Verilerde dikkat çekici bir değişiklik veya anormallik varsa belirt.
+Analizini 100 kelimeyi geçmeyecek şekilde, bilgilendirici ve net bir üslupla Türkçe olarak sun.
+
+Son Veri:
+- CO2: ${latestData.co2 ? latestData.co2.toFixed(0) : 'N/A'} ppm
+- Hava Kalitesi (CO2 bazlı): ${getAirQualityStatus(latestData.co2).text}
+- Işık Şiddeti: ${latestData.light_value ? latestData.light_value.toFixed(0) : 'N/A'} lux
+- Sıcaklık: ${latestData.temperature ? latestData.temperature.toFixed(1) : 'N/A'}°C
+- Nem: ${latestData.humidity ? latestData.humidity.toFixed(1) : 'N/A'}%
+- Zaman: ${formatDate(latestData.timestamp)}
+
+Geçmiş Veriler (Son 5, en eskiden en yeniye):
+${recentHistory.map(d => `- Zaman: ${formatDate(d.timestamp)}, CO2: ${d.co2 ? d.co2.toFixed(0) : 'N/A'} ppm`).join('\n')}
+`;
+
                 try {
                     let chatHistoryForAnalysis = [{ role: "user", parts: [{ text: prompt }] }];
                     const payload = { contents: chatHistoryForAnalysis };
@@ -729,7 +744,6 @@
                     const userMessage = chatInput.value.trim();
                     if (!userMessage) return;
 
-                    // API Anahtarı kontrolü
                     if (!userGeminiApiKey) {
                         appendMessage('Lütfen önce Ayarlar bölümünden Gemini API Anahtarınızı girin.', 'ai');
                         return;
@@ -776,7 +790,6 @@
             }
 
             function downloadCSV() {
-                // Bu fonksiyon içeriği değişmedi...
                 if (lastHistoryData.length === 0) { showMessage("İndirilecek veri yok.", "info"); return; }
                 const headers = ["Timestamp", "CO2 (ppm)", "Temperature (°C)", "Humidity (%)", "TDS (ppm)", "Light (lux)"];
                 const csvRows = [headers.join(',')];
