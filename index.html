@@ -103,10 +103,11 @@
 <body class="antialiased">
 
     <header class="bg-white/95 backdrop-blur-sm sticky top-0 z-50 shadow-md">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <a href="#hero" class="flex items-center">
                 <img src="logo111.png" alt="BIQ-Alg 0CO2 Proje Logosu" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/150x50/FFFFFF/073B4C?text=BiQ-Alg+0CO2';">
             </a>
+            <!-- Masaüstü Menüsü -->
             <div class="hidden md:flex items-center space-x-4">
                 <a href="#problem-solution" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
@@ -144,17 +145,38 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 7.8C14.2 6.5 12.2 6.5 11 7.8s-1.2 3.2 0 4.5l4.2 4.2c1.2 1.2 3.2 1.2 4.5 0s1.2-3.2 0-4.5L15.5 7.8z"></path><path d="m12.2 11 4.5 4.5"></path><path d="M7.8 15.5c-1.2-1.2-1.2-3.2 0-4.5l4.2-4.2c1.2-1.2 3.2-1.2 4.5 0"></path></svg>
                     <span>Ayarlar</span>
                 </a>
-                <!-- YENİ: Paylaş Butonu -->
                 <a id="share-button" href="#" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
                     <span>Paylaş</span>
                 </a>
             </div>
+            <!-- Mobil Menü Butonu -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-[#118AB2] focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
         </nav>
+        <!-- Mobil Menü -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-sm">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#problem-solution" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Çözüm</a>
+                <a href="#technology" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Teknoloji</a>
+                <a href="#live-data" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Canlı Veri</a>
+                <a href="#city-comparison" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Karşılaştırma</a>
+                <a href="#ai-chat-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Yapay Zeka</a>
+                <a href="#podcast-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Podcast</a>
+                <a href="#project-resources" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Kaynaklar</a>
+                <a href="#stats-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">İstatistikler</a>
+                <a href="#api-key-section" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Ayarlar</a>
+                <a id="mobile-share-button" href="#" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-[#118AB2]">Paylaş</a>
+            </div>
+        </div>
     </header>
 
     <main>
-        <!-- Diğer section'lar burada olduğu gibi kalır... -->
         <section id="hero" class="py-20 md:py-32" style="background: linear-gradient(135deg, #118AB2 0%, #06D6A0 100%);">
             <div class="container mx-auto px-6 text-center text-white">
                 <h1 class="text-4xl md:text-6xl font-bold font-heading mb-4 tracking-tight">Afet Sonrası Temiz Nefes: <br> BIQ-Alg 0CO2</h1>
@@ -924,6 +946,7 @@
             
             function setupShareModal() {
                 const shareButton = document.getElementById('share-button');
+                const mobileShareButton = document.getElementById('mobile-share-button');
                 const shareModal = document.getElementById('share-modal');
                 const closeModalButton = document.getElementById('close-share-modal');
                 const copyLinkButton = document.getElementById('copy-link-button');
@@ -932,13 +955,16 @@
 
                 const shareUrl = 'https://sev84.github.io/mobil-mikroalg-egitim1/';
                 const shareText = 'Afet sonrası temiz nefes için geliştirilen BIQ-Alg 0CO2 projesine göz atın!';
+                const subject = encodeURIComponent('BIQ-Alg 0CO2 Projesi');
+                const body = encodeURIComponent(shareText + '\n\n' + shareUrl);
+
 
                 shareLinkInput.value = shareUrl;
 
                 document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
                 document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
                 document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
-                document.getElementById('share-email').href = `mailto:?subject=${encodeURIComponent('BIQ-Alg 0CO2 Projesi')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
+                document.getElementById('share-email').href = `https://mail.google.com/mail/?view=cm&fs=1&su=${subject}&body=${body}`;
 
                 function openModal() {
                     shareModal.classList.remove('hidden');
@@ -958,10 +984,9 @@
                     }, 300);
                 }
 
-                shareButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openModal();
-                });
+                shareButton.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+                mobileShareButton.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+
 
                 closeModalButton.addEventListener('click', closeModal);
 
@@ -982,6 +1007,22 @@
                 });
             }
 
+            function setupMobileMenu() {
+                const menuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+                menuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
             function downloadCSV() { if (lastHistoryData.length === 0) { showMessage("İndirilecek veri yok.", "info"); return; } const headers = ["Timestamp", "CO2 (ppm)", "Temperature (°C)", "Humidity (%)", "TDS (ppm)", "Light (lux)"]; const csvRows = [headers.join(',')]; lastHistoryData.forEach(data => { const row = [formatDate(data.timestamp), data.co2, data.temperature, data.humidity, data.tds_value, data.light_value].map(item => `"${item}"`).join(','); csvRows.push(row); }); const csvString = csvRows.join('\n'); const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `BIQ-Alg_Sensor_Data_${new Date().toISOString().slice(0, 10)}.csv`; document.body.appendChild(link); link.click(); document.body.removeChild(link); showMessage("Veriler CSV olarak indirildi!", "success"); }
             const downloadCsvButton = document.getElementById('download-csv-button');
             if (downloadCsvButton) { downloadCsvButton.addEventListener('click', downloadCSV); }
@@ -991,6 +1032,7 @@
             initializeMap();
             setupApiKeyManagement(); 
             setupShareModal();
+            setupMobileMenu();
 
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
