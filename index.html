@@ -20,6 +20,14 @@
         .chart-container { position: relative; width: 100%; max-width: 550px; margin: auto; height: 320px; }
         @media (min-width: 768px) { .chart-container { height: 400px; } }
         .kpi-card { background: #ffffff; border-radius: 0.75rem; padding: 1rem; text-align: center; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+        .nav-link { 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
         .nav-link.active { color: #118AB2; font-weight: 700; }
         [title]:hover { cursor: help; }
         .analysis-card {
@@ -91,20 +99,42 @@
             <a href="#hero" class="flex items-center">
                 <img src="logo111.png" alt="BIQ-Alg 0CO2 Proje Logosu" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/150x50/FFFFFF/073B4C?text=BiQ-Alg+0CO2';">
             </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#problem-solution" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Çözüm</a>
-                <a href="#technology" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Teknoloji</a>
-                <a href="#live-data" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Canlı Veri</a>
-                <a href="#city-comparison" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Karşılaştırma</a>
-                <a href="#ai-chat-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Yapay Zeka</a>
-                <a href="#podcast-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Podcast</a>
-                <a href="#project-resources" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">Kaynaklar</a>
-                <!-- YENİ: İstatistikler Sekmesi -->
-                <a href="#stats-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors" title="Kullanıcı İstatistikleri">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#problem-solution" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                    <span>Çözüm</span>
                 </a>
-                <a href="#api-key-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors" title="API Anahtarı Ayarları">
+                <a href="#technology" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>Teknoloji</span>
+                </a>
+                <a href="#live-data" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    <span>Canlı Veri</span>
+                </a>
+                <a href="#city-comparison" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18.7 8a6 6 0 0 0-8.4-8.4"></path><path d="M13 10.7a6 6 0 0 0 8.4 8.4"></path></svg>
+                    <span>Karşılaştırma</span>
+                </a>
+                <a href="#ai-chat-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+                    <span>Yapay Zeka</span>
+                </a>
+                <a href="#podcast-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    <span>Podcast</span>
+                </a>
+                <a href="#project-resources" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span>Kaynaklar</span>
+                </a>
+                <a href="#stats-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>İstatistikler</span>
+                </a>
+                <a href="#api-key-section" class="nav-link text-gray-600 hover:text-[#118AB2] font-semibold transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 7.8C14.2 6.5 12.2 6.5 11 7.8s-1.2 3.2 0 4.5l4.2 4.2c1.2 1.2 3.2 1.2 4.5 0s1.2-3.2 0-4.5L15.5 7.8z"></path><path d="m12.2 11 4.5 4.5"></path><path d="M7.8 15.5c-1.2-1.2-1.2-3.2 0-4.5l4.2-4.2c1.2-1.2 3.2-1.2 4.5 0"></path></svg>
+                    <span>Ayarlar</span>
                 </a>
             </div>
         </nav>
@@ -230,13 +260,14 @@
                             <tr>
                                 <th class="p-4 font-bold uppercase tracking-wider">Şehir</th>
                                 <th class="p-4 font-bold uppercase tracking-wider">Hava Kalite İndeksi (HKİ)</th>
+                                <th class="p-4 font-bold uppercase tracking-wider">Ana Kirletici Değeri</th>
                                 <th class="p-4 font-bold uppercase tracking-wider">Durum</th>
                                 <th class="p-4 font-bold uppercase tracking-wider">Ana Kirletici</th>
                                 <th class="p-4 font-bold uppercase tracking-wider">Ölçüm Tarihi</th>
                             </tr>
                         </thead>
                         <tbody id="comparison-table-body" class="divide-y divide-gray-200">
-                                <tr><td colspan="5" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>
+                                <tr><td colspan="6" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -466,7 +497,7 @@
                         startRealtimeListeners();
                         loadExternalCityData();
                         setupAiChat();
-                        setupUserStatistics(user.uid); // Kullanıcı istatistiklerini başlat
+                        setupUserStatistics(user.uid);
                     } else {
                         signInAnonymously(auth);
                     }
@@ -476,7 +507,8 @@
                 showMessage("Firebase başlatılamadı. Lütfen konsolu kontrol edin.", "error", 7000);
             }
             
-            const POLLUTANT_INFO = { pm25: "İnce Partikül Madde (PM2.5)", pm10: "Kaba Partikül Madde (PM10)", o3: "Ozon (O₃)", no2: "Azot Dioksit (NO₂)", so2: "Kükürt Dioksit (SO₂)", co: "Karbon Monoksit (CO)" };
+            const POLLUTANT_INFO = { pm25: "PM2.5", pm10: "PM10", o3: "Ozon", no2: "NO₂", so2: "SO₂", co: "CO" };
+            const POLLUTANT_UNITS = { pm25: "µg/m³", pm10: "µg/m³", o3: "ppm", no2: "ppm", so2: "ppm", co: "ppm" };
 
             function showMessage(message, type = 'info', duration = 3000) {
                 const messageBox = document.getElementById('message-box');
@@ -485,15 +517,65 @@
                 setTimeout(() => { messageBox.classList.remove('show'); }, duration);
             }
 
-            // ... Diğer yardımcı fonksiyonlar (getAqiStatus, formatDate vb.) burada değişmeden kalır ...
-            function getAqiStatus(aqi) { if (aqi <= 50) return { text: 'İyi', color: 'bg-green-500', textColor: 'text-green-700' }; if (aqi <= 100) return { text: 'Orta', color: 'bg-yellow-500', textColor: 'text-yellow-700' }; if (aqi <= 150) return { text: 'Hassas', color: 'bg-orange-500', textColor: 'text-orange-700' }; if (aqi <= 200) return { text: 'Sağlıksız', color: 'bg-red-500', textColor: 'text-red-700' }; if (aqi <= 300) return { text: 'Çok Sağlıksız', color: 'bg-purple-700', textColor: 'text-purple-700' }; return { text: 'Tehlikeli', color: 'bg-red-900', textColor: 'text-red-900' }; }
+            function getAqiStatus(aqi) { if (aqi <= 50) return { text: 'İyi', color: 'bg-green-500' }; if (aqi <= 100) return { text: 'Orta', color: 'bg-yellow-500' }; if (aqi <= 150) return { text: 'Hassas', color: 'bg-orange-500' }; if (aqi <= 200) return { text: 'Sağlıksız', color: 'bg-red-500' }; if (aqi <= 300) return { text: 'Çok Sağlıksız', color: 'bg-purple-700' }; return { text: 'Tehlikeli', color: 'bg-red-900' }; }
             function getAqiColor(aqi) { if (aqi <= 50) return '#28a745'; if (aqi <= 100) return '#ffc107'; if (aqi <= 150) return '#fd7e14'; if (aqi <= 200) return '#dc3545'; if (aqi <= 300) return '#6f42c1'; return '#8b0000'; }
             function getCo2ColorForMap(co2) { if (co2 <= 0 || !co2) return '#cccccc'; if (co2 <= 1000) return '#28a745'; if (co2 <= 2000) return '#ffc107'; return '#dc3545'; }
-            function getAirQualityStatus(co2) { if (co2 <= 0) return { text: "---", color: "text-gray-500" }; if (co2 <= 1000) return { text: "İyi", color: "text-[#06D6A0]" }; if (co2 <= 2000) return { text: "Orta", color: "text-yellow-500" }; return { text: "Kötü", color: "text-red-500" }; }
+            function getAirQualityStatus(co2) { if (!co2 || co2 <= 0) return { text: "---", color: "text-gray-500", pill: "bg-gray-200 text-gray-800"}; if (co2 <= 1000) return { text: "İyi", color: "text-[#06D6A0]", pill: "bg-green-200 text-green-800" }; if (co2 <= 2000) return { text: "Orta", color: "text-yellow-500", pill: "bg-yellow-200 text-yellow-800" }; return { text: "Kötü", color: "text-red-500", pill: "bg-red-200 text-red-800" }; }
             function formatDate(timestamp) { if (!timestamp) return 'N/A'; const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp); return date.toLocaleString('tr-TR', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }); }
+            function formatWaqiDate(dateString) { if(!dateString) return 'N/A'; return new Date(dateString).toLocaleString('tr-TR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }); }
+
             async function fetchAirQualityData(city) { try { const response = await fetch(`https://api.waqi.info/feed/${city}/?token=${AQI_API_TOKEN}`); if (!response.ok) { console.error(`WAQI API hatası (${city}): ${response.status} ${response.statusText}`); return null; } const jsonResponse = await response.json(); if (jsonResponse.status === 'ok') { return jsonResponse.data; } else { console.warn(`WAQI API'den ${city} için geçerli veri alınamadı:`, jsonResponse.data); return null; } } catch (error) { console.error(`WAQI API çağrılırken hata (${city}):`, error); return null; } }
-            async function loadExternalCityData() { const tableBody = document.getElementById('comparison-table-body'); if (!tableBody) return; tableBody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>`; allCityData = []; const istanbulDataPromise = fetchAirQualityData('Istanbul'); const otherCitiesPromises = CITIES.map(city => fetchAirQualityData(city)); const [istanbulData, ...otherCitiesData] = await Promise.all([istanbulDataPromise, ...otherCitiesPromises]); allCityData.push({ city: 'Istanbul', data: istanbulData }); CITIES.forEach((city, i) => { allCityData.push({ city: city, data: otherCitiesData[i] }); }); updateComparisonTable(); updateMapMarkers(); }
-            function updateComparisonTable() { const tableBody = document.getElementById('comparison-table-body'); if (!tableBody) return; tableBody.innerHTML = ''; if (latestSensorData) { const localStatus = getAirQualityStatus(latestSensorData.co2); const istanbulWAQIData = allCityData.find(c => c.city === 'Istanbul')?.data; const mainPollutant = istanbulWAQIData && istanbulWAQIData.dominentpol ? (POLLUTANT_INFO[istanbulWAQIData.dominentpol] || istanbulWAQIData.dominentpol.toUpperCase()) : 'CO₂ (Yerel Ölçüm)'; const measurementDate = latestSensorData.timestamp?.toDate ? latestSensorData.timestamp.toDate().toLocaleString('tr-TR') : '...'; tableBody.innerHTML += `<tr class="bg-blue-50"><td class="p-4 font-semibold text-[#073B4C]">BIQ-Alg İstasyonu (İstanbul)</td><td class="p-4 font-bold text-lg">${latestSensorData.co2 ? parseFloat(latestSensorData.co2).toFixed(0) : '---'}</td><td class="p-4"><span class="px-3 py-1 text-sm font-bold rounded-full ${localStatus.color.replace('text', 'bg').replace('-500', '-200')} ${localStatus.color}">${localStatus.text}</span></td><td class="p-4 text-gray-700">${mainPollutant}</td><td class="p-4 text-gray-700">${measurementDate}</td></tr>`; } else { tableBody.insertAdjacentHTML('beforeend', `<tr class="bg-[#e0f7fa] font-bold text-[#073B4C]"><td class="p-4">BIQ-Alg İstasyonu (İstanbul)</td><td colspan="4" class="p-4 text-center text-gray-500">Veri bekleniyor...</td></tr>`); } allCityData.filter(c => c.city !== 'Istanbul').forEach(cityData => { const { city, data } = cityData; const row = document.createElement('tr'); row.className = 'hover:bg-gray-50'; let rowContent = `<td class="p-4 font-semibold text-[#073B4C]">${city}</td>`; if (data && data.aqi) { const status = getAqiStatus(data.aqi); const pollutantCode = (data.dominentpol || '-').toLowerCase(); const pollutantDescription = POLLUTANT_INFO[pollutantCode] || 'Bilinmiyor'; const measurementTime = data.time?.s ? new Date(data.time.s * 1000).toLocaleString('tr-TR') : '-'; rowContent += `<td class="p-4 font-bold text-lg">${data.aqi}</td><td class="p-4"><span class="px-3 py-1 text-sm text-white rounded-full ${status.color}">${status.text}</span></td><td class="p-4 text-gray-700"><span title="${pollutantDescription}">${pollutantCode.toUpperCase()}</span></td><td class="p-4 text-gray-700">${measurementTime}</td>`; } else { rowContent += `<td colspan="4" class="p-4 text-red-500">Veri alınamadı.</td>`; } row.innerHTML = rowContent; tableBody.appendChild(row); }); }
+            async function loadExternalCityData() { const tableBody = document.getElementById('comparison-table-body'); if (!tableBody) return; tableBody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-gray-500">Veriler yükleniyor...</td></tr>`; allCityData = []; const istanbulDataPromise = fetchAirQualityData('Istanbul'); const otherCitiesPromises = CITIES.map(city => fetchAirQualityData(city)); const [istanbulData, ...otherCitiesData] = await Promise.all([istanbulDataPromise, ...otherCitiesPromises]); allCityData.push({ city: 'Istanbul', data: istanbulData }); CITIES.forEach((city, i) => { allCityData.push({ city: city, data: otherCitiesData[i] }); }); updateComparisonTable(); updateMapMarkers(); }
+            
+            function updateComparisonTable() {
+                const tableBody = document.getElementById('comparison-table-body');
+                if (!tableBody) return;
+                tableBody.innerHTML = '';
+
+                if (latestSensorData) {
+                    const localStatus = getAirQualityStatus(latestSensorData.co2);
+                    const measurementDate = latestSensorData.timestamp?.toDate ? formatDate(latestSensorData.timestamp) : '...';
+
+                    tableBody.innerHTML += `
+                        <tr class="bg-blue-50">
+                            <td class="p-4 font-semibold text-[#073B4C]">BIQ-Alg İstasyonu (İstanbul)</td>
+                            <td class="p-4 font-bold text-lg">---</td>
+                            <td class="p-4 font-bold text-lg">${latestSensorData.co2 ? parseFloat(latestSensorData.co2).toFixed(0) : '---'} <span class="text-sm text-gray-500">ppm</span></td>
+                            <td class="p-4"><span class="px-3 py-1 text-sm font-bold rounded-full ${localStatus.pill}">${localStatus.text}</span></td>
+                            <td class="p-4 text-gray-700">CO₂ (Yerel)</td>
+                            <td class="p-4 text-gray-700">${measurementDate}</td>
+                        </tr>
+                    `;
+                }
+
+                allCityData.filter(c => c.city !== 'Istanbul').forEach(cityData => {
+                    const { city, data } = cityData;
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50';
+                    let rowContent = `<td class="p-4 font-semibold text-[#073B4C]">${city}</td>`;
+                    if (data && data.aqi) {
+                        const status = getAqiStatus(data.aqi);
+                        const pollutantCode = (data.dominentpol || '-').toLowerCase();
+                        const pollutantName = POLLUTANT_INFO[pollutantCode] || 'Bilinmiyor';
+                        const pollutantValue = data.iaqi && data.iaqi[pollutantCode] ? data.iaqi[pollutantCode].v : '---';
+                        const pollutantUnit = POLLUTANT_UNITS[pollutantCode] || '';
+                        const measurementTime = data.time?.s ? formatWaqiDate(data.time.s) : 'N/A';
+                        
+                        rowContent += `
+                            <td class="p-4 font-bold text-lg">${data.aqi}</td>
+                            <td class="p-4 font-bold text-lg">${pollutantValue} <span class="text-sm text-gray-500">${pollutantUnit}</span></td>
+                            <td class="p-4"><span class="px-3 py-1 text-sm text-white rounded-full ${status.color}">${status.text}</span></td>
+                            <td class="p-4 text-gray-700"><span title="${pollutantName}">${pollutantCode.toUpperCase()}</span></td>
+                            <td class="p-4 text-gray-700">${measurementTime}</td>
+                        `;
+                    } else {
+                        rowContent += `<td colspan="5" class="p-4 text-red-500">Veri alınamadı.</td>`;
+                    }
+                    row.innerHTML = rowContent;
+                    tableBody.appendChild(row);
+                });
+            }
+
             function initializeCharts() { const createChart = (ctx, datasets, suggestedMin, suggestedMax) => { if (!ctx) return null; return new Chart(ctx, { type: 'line', data: { labels: [], datasets: datasets }, options: { animation: false, responsive: true, maintainAspectRatio: false, scales: { x: { type: 'time', time: { unit: 'second', displayFormats: { second: 'HH:mm:ss' } }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }}, y: { beginAtZero: false, suggestedMin: suggestedMin, suggestedMax: suggestedMax } }, plugins: { legend: { display: true } } } }); }; tempHumidityChart = createChart(document.getElementById('tempHumidityChart')?.getContext('2d'), [{ label: 'Sıcaklık (°C)', data: [], borderColor: '#FF6B6B', tension: 0.2 }, { label: 'Nem (%)', data: [], borderColor: '#118AB2', tension: 0.2 }], 10, 40); co2Chart = createChart(document.getElementById('co2Chart')?.getContext('2d'), [{ label: 'CO₂ (ppm)', data: [], borderColor: '#06D6A0', tension: 0.2, fill: { target: 'origin', above: 'rgba(6, 214, 160, 0.1)'} }], 300, 2000); tdsChart = createChart(document.getElementById('tdsChart')?.getContext('2d'), [{ label: 'TDS (ppm)', data: [], borderColor: '#EF476F', tension: 0.2, fill: { target: 'origin', above: 'rgba(239, 71, 111, 0.1)'} }], 50, 600); lightChart = createChart(document.getElementById('lightChart')?.getContext('2d'), [{ label: 'Işık (lux)', data: [], borderColor: '#FFD166', tension: 0.2, fill: { target: 'origin', above: 'rgba(255, 209, 102, 0.1)'} }], 200, 900); const pbrCtx = document.getElementById('pbrPerformanceChart').getContext('2d'); pbrPerformanceChart = new Chart(pbrCtx, { type: 'bar', data: { labels: ['Dikey Tübüler FBR', 'Düz Panel FBR', 'Açık Havuz Sistemleri'], datasets: [{ label: 'CO₂ Giderim Verimliliği (%)', data: [90, 75, 40], backgroundColor: ['#118AB2', '#073B4C', '#073B4C'], borderColor: ['#118AB2', '#073B4C', '#073B4C'], borderWidth: 1 }] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 100, title: { display: true, text: 'Verimlilik (%)', color: '#073B4C' }, ticks: { color: '#073B4C' }, grid: { color: 'rgba(7, 59, 76, 0.1)' } }, x: { ticks: { color: '#073B4C' }, grid: { color: 'rgba(7, 59, 76, 0.1)' } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': ' + context.parsed.y + '%'; } } } } } }); }
             function updateAllCharts(history) { lastHistoryData = history; const labels = [], tempData = [], humData = [], co2Data = [], tdsData = [], lightData = []; history.forEach(dp => { if (dp.timestamp && dp.timestamp.toDate) { const timestamp = dp.timestamp.toDate(); labels.push(timestamp); tempData.push(isNaN(dp.temperature) ? null : parseFloat(dp.temperature)); humData.push(isNaN(dp.humidity) ? null : parseFloat(dp.humidity)); co2Data.push(isNaN(dp.co2) ? null : parseFloat(dp.co2)); tdsData.push(isNaN(dp.tds_value) ? null : parseFloat(dp.tds_value)); lightData.push(isNaN(dp.light_value) ? null : parseFloat(dp.light_value)); } }); if(tempHumidityChart) { tempHumidityChart.data.labels = labels; tempHumidityChart.data.datasets[0].data = tempData; tempHumidityChart.data.datasets[1].data = humData; tempHumidityChart.update(); } if(co2Chart){ co2Chart.data.labels = labels; co2Chart.data.datasets[0].data = co2Data; co2Chart.update(); } if(tdsChart){ tdsChart.data.labels = labels; tdsChart.data.datasets[0].data = tdsData; tdsChart.update(); } if(lightChart){ lightChart.data.labels = labels; lightChart.data.datasets[0].data = lightData; lightChart.update(); } updateEfficiencyAnalysis(history); }
             function initializeMap() { if (mymap) { mymap.remove(); } mymap = L.map('mapid').setView([38.9637, 35.2433], 6); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(mymap); }
@@ -501,14 +583,12 @@
             function startRealtimeListeners() { const appId = 'default-app-id'; const latestDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sensors', 'current_data'); onSnapshot(latestDocRef, (docSnap) => { if (docSnap.exists()) { latestSensorData = docSnap.data(); updateKpiCards(latestSensorData); updateComparisonTable(); updateMapMarkers(); } else { console.log(`No latest sensor data found in Firestore at 'artifacts/${appId}/public/data/sensors/current_data'.`); showMessage("Sensör verisi bulunamadı. Cihazın bağlı olduğundan emin olun.", "info", 5000); } }, (error) => { console.error("Latest sensor data dinlenirken hata:", error); showMessage("Sensör verileri alınırken hata oluştu. Firebase Güvenlik Kurallarınızı kontrol edin.", "error", 7000); }); const historyCollectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'sensor_history'); onSnapshot(query(historyCollectionRef, orderBy('timestamp', 'desc'), limit(20)), (snapshot) => { const history = []; snapshot.forEach(doc => history.push(doc.data())); updateAllCharts(history.reverse()); }, (error) => { console.error("Sensor history data dinlenirken hata:", error); showMessage("Geçmiş verileri alınırken hata oluştu. Firebase Güvenlik Kurallarınızı kontrol edin.", "error", 7000); }); }
             function updateKpiCards(data) { document.getElementById('kpi-co2').textContent = `${data.co2 ? data.co2.toFixed(0) : '---'} ppm`; const airQuality = getAirQualityStatus(data.co2); const kpiAirQualityEl = document.getElementById('kpi-air-quality'); kpiAirQualityEl.textContent = airQuality.text; kpiAirQualityEl.className = `text-3xl font-black mt-1 ${airQuality.color}`; document.getElementById('kpi-light').textContent = `${data.light_value ? data.light_value.toFixed(0) : '---'} lux`; document.getElementById('kpi-temp').textContent = `${data.temperature ? data.temperature.toFixed(1) : '--'} °C`; document.getElementById('kpi-humidity').textContent = `${data.humidity ? data.humidity.toFixed(0) : '--'} %`; document.getElementById('kpi-tds').textContent = `${data.tds_value ? data.tds_value.toFixed(0) : '---'} ppm`; }
 
-            // YENİ: Kullanıcı istatistikleri fonksiyonu
             function setupUserStatistics(userId) {
                 const appId = 'default-app-id';
                 const statsDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'stats', 'totals');
                 const presenceColRef = collection(db, 'artifacts', appId, 'public', 'data', 'presence');
                 const userPresenceRef = doc(presenceColRef, userId);
 
-                // Toplam kullanıcı sayısını artır (sadece ilk ziyarette)
                 const hasVisited = localStorage.getItem('hasVisited');
                 if (!hasVisited) {
                     runTransaction(db, async (transaction) => {
@@ -526,32 +606,26 @@
                     });
                 }
 
-                // Toplam kullanıcı sayısını dinle ve göster
                 onSnapshot(statsDocRef, (doc) => {
                     const totalUsers = doc.exists() ? doc.data().totalUsers : 0;
                     document.getElementById('total-users-display').textContent = totalUsers;
                 });
 
-                // Kullanıcının çevrimiçi durumunu yönet
                 window.addEventListener('beforeunload', () => {
                     deleteDoc(userPresenceRef);
                 });
 
-                // Kullanıcıyı çevrimiçi olarak işaretle ve periyodik olarak güncelle
                 const setOnline = () => {
-                    deleteDoc(userPresenceRef).finally(() => {
-                         runTransaction(db, async (transaction) => {
-                            transaction.set(userPresenceRef, { lastSeen: serverTimestamp() });
-                        });
-                    });
+                    runTransaction(db, async (transaction) => {
+                        transaction.set(userPresenceRef, { lastSeen: serverTimestamp() });
+                    }).catch(err => console.error("Set online transaction failed:", err));
                 };
                 setOnline();
-                setInterval(setOnline, 60000); // Her 60 saniyede bir güncelle
+                setInterval(setOnline, 60000); 
 
-                // Çevrimiçi kullanıcıları dinle ve say
                 onSnapshot(presenceColRef, (snapshot) => {
                     const now = Date.now();
-                    const onlineThreshold = now - 2 * 60 * 1000; // Son 2 dakika
+                    const onlineThreshold = now - 2 * 60 * 1000; 
                     let onlineCount = 0;
                     const batch = writeBatch(db);
 
@@ -560,7 +634,6 @@
                         if (data.lastSeen && data.lastSeen.toMillis() > onlineThreshold) {
                             onlineCount++;
                         } else {
-                            // Eski kayıtları temizle
                             batch.delete(doc.ref);
                         }
                     });
