@@ -713,8 +713,8 @@
                 updateEfficiencyAnalysis(history); // Verimlilik analizini de güncelle
             }
             
-           // Harita başlatma
-            function initMap() {
+            // Haritayı başlatma
+            function initializeMap() {
                 if (mymap) {
                     mymap.remove(); // Harita zaten varsa kaldır
                 }
@@ -727,32 +727,51 @@
 
             // Harita üzerindeki işaretçileri güncelleme
             function updateMapMarkers() {
-                // Mevcut tüm işaretçileri kaldır
+                // Mevcut işaretçileri temizle
                 for (const city in cityMarkers) {
-                    cityMarkers[city].remove();
+                    mymap.removeLayer(cityMarkers[city]);
                 }
-                cityMarkers = {}; // Reset markers
+                cityMarkers = {};
 
-                allCityData.forEach(data => {
-                    if (data.coordinates) {
-                        const aqiStatus = getAqiStatus(data.aqi);
-                        const markerHtml = `
-                            <div class="custom-div-icon flex flex-col items-center justify-center p-1 rounded-full ${aqiStatus.color}" style="min-width: 40px; min-height: 40px; border: 2px solid white;">
-                                <span class="text-white text-xs font-bold">${data.aqi}</span>
-                                <span class="text-white text-xs">${data.city === 'Istanbul' ? 'BIQ-Alg' : data.city}</span>
-                            </div>
-                        `;
-                        const customIcon = L.divIcon({
-                            className: 'custom-div-icon-container',
-                            html: markerHtml,
-                            iconSize: [40, 40],
-                            iconAnchor: [20, 20]
-                        });
+                // BIQ-Alg istasyonu verisini ekle (İstanbul)
+                if (latestSensorData) {
+                    const aqi = latestSensorData.co2; // Kendi CO2 verinizi AQI olarak kullanıyoruz
+                    const status = getAirQualityStatus(aqi).text; // Kendi fonksiyonunuzdan durum
+                    const color = getAirQualityStatus(aqi).color.replace('text-', 'bg-'); // Rengi Tailwind bg sınıfına çevir
+                    
+                    const markerHtml = `<div class="custom-div-icon" style="background-color:${color}; border-radius:50%; width:40px; height:40px; line-height:40px;">${aqi ? aqi.toFixed(0) : '---'}</div>`;
+                    const customIcon = L.divIcon({
+                        className: 'custom-div-icon',
+                        html: markerHtml,
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 20]
+                    });
 
-                        const marker = L.marker(data.coordinates, { icon: customIcon })
-                            .bindPopup(`<b>${data.city}</b><br>HKİ: ${data.aqi} (${aqiStatus.text})<br>Ana Kirletici: ${data.dominentPol}<br>Ölçüm: ${formatDate(data.time)}`)
-                            .addTo(mymap);
-                        cityMarkers[data.city] = marker; // Store marker
+                    const istanbulCoords = CITY_COORDINATES["Istanbul"];
+                    const marker = L.marker(istanbulCoords, { icon: customIcon }).addTo(mymap)
+                        .bindPopup(`<b>BIQ-Alg İstasyonu (İstanbul)</b><br>CO₂: ${aqi ? aqi.toFixed(0) : '---'} ppm (${status})`);
+                    cityMarkers["Istanbul"] = marker;
+                }
+
+                // Diğer şehirlerin hava kalitesi verilerini ekle
+                allCityData.filter(c => c.city !== 'Istanbul' && c.data && c.data.aqi).forEach(cityData => {
+                    const aqi = cityData.data.aqi;
+                    const status = getAqiStatus(aqi).text;
+                    const color = getAqiStatus(aqi).color; // Tailwind bg sınıfı olarak geliyor
+                    const markerHtml = `<div class="custom-div-icon" style="background-color:${color}; border-radius:50%; width:40px; height:40px; line-height:40px;">${aqi}</div>`;
+                    const customIcon = L.divIcon({
+                        className: 'custom-div-icon',
+                        html: markerHtml,
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 20]
+                    });
+
+                    const cityCoords = CITY_COORDINATES[cityData.city];
+                    if (cityCoords) {
+                        const mainPollutant = cityData.data.dominentpol ? (POLLUTANT_INFO[cityData.data.dominentpol] || cityData.data.dominentpol.toUpperCase()) : 'N/A';
+                        const marker = L.marker(cityCoords, { icon: customIcon }).addTo(mymap)
+                            .bindPopup(`<b>${cityData.city}</b><br>AQI: ${aqi} (${status})<br>Ana Kirletici: ${mainPollutant}`);
+                        cityMarkers[cityData.city] = marker;
                     }
                 });
             }
