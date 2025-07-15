@@ -758,11 +758,7 @@
                     const aqi = cityData.data.aqi;
                     const status = getAqiStatus(aqi).text;
                     const color = getAqiStatus(aqi).color; // Tailwind bg sınıfı olarak geliyor
-                    const markerHtml =const markerHtml =  <div class="custom-div-icon" style="background-color:${aqiStatus.color}; border-radius:50%; width:44px; height:44px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-        <span style="font-size:18px; font-weight:800; line-height:1;">${data.aqi}</span>
-        <span style="font-size:10px;">${data.city}</span>
-    </div>`;
-                    
+                    const markerHtml = `<div class="custom-div-icon" style="background-color:${color}; border-radius:50%; width:40px; height:40px; line-height:40px;">${aqi}</div>`;
                     const customIcon = L.divIcon({
                         className: 'custom-div-icon',
                         html: markerHtml,
