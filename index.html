@@ -831,7 +831,8 @@
                 onSnapshot(statsDocRef, (doc) => {
                     const totalUsers = doc.exists() ? doc.data().totalUsers : 0;
                     document.getElementById('total-users-display').textContent = totalUsers;
-                    document.getElementById('total-users-time').textContent = `Son Güncelleme: ${new Date().toLocaleTimeString('tr-TR')}`;
+                    // GÜNCELLENDİ: Harita üzerindeki sayaç toplam ziyaretçiyi gösteriyor
+                    document.getElementById('map-online-users-count').innerHTML = `<span class="inline-block w-3 h-3 bg-blue-500 rounded-full mr-2"></span>Toplam ${totalUsers} kullanıcı haritayı görüntüledi.`;
                 });
 
                 window.addEventListener('beforeunload', () => { deleteDoc(userPresenceRef); });
@@ -857,7 +858,6 @@
                     
                     document.getElementById('online-users-display').textContent = onlineCount;
                     document.getElementById('online-users-time').textContent = `Son Güncelleme: ${new Date().toLocaleTimeString('tr-TR')}`;
-                    document.getElementById('map-online-users-count').innerHTML = `<span class="inline-block w-3 h-3 bg-green-500 rounded-full mr-2 animate-ping"></span>${onlineCount} kullanıcı şu an haritayı görüntülüyor.`;
                 });
                 
                 if (navigator.geolocation) {
@@ -988,7 +988,7 @@
                     e.preventDefault();
                     const userMessage = chatInput.value.trim();
                     if (!userMessage) return;
-                    if (!userGeminiApiKey) { appendMessage('Lütfen önce Ayarlar bölümünden Gemini API Anahtarı girin.', 'ai'); return; }
+                    if (!userGeminiApiKey) { appendMessage('Lütfen önce Ayarlar bölümünden Gemini API Anahtarınızı girin.', 'ai'); return; }
                     
                     appendMessage(userMessage, 'user');
                     chatInput.value = '';
