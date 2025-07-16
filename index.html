@@ -447,6 +447,14 @@
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
                          Deneyimini Kaydet
                      </button>
+                     <div id="podcast-submission-area" class="mt-6 hidden">
+                        <form id="podcast-submission-form" class="flex flex-col sm:flex-row gap-2">
+                            <input type="url" id="podcast-link-input" placeholder="Kaydettiğiniz podcast'in Podomatic linkini yapıştırın" class="flex-grow p-3 border rounded-lg focus:ring-2 focus:ring-[#118AB2] focus:outline-none" required>
+                            <button type="submit" id="podcast-submit-button" class="bg-[#073B4C] text-white font-bold py-2 px-5 rounded-lg hover:bg-[#118AB2] transition-colors flex items-center justify-center">
+                                Gönder
+                            </button>
+                        </form>
+                    </div>
                  </div>
             </div>
         </section>
@@ -559,11 +567,10 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot, runTransaction, serverTimestamp, deleteDoc, writeBatch, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot, runTransaction, serverTimestamp, deleteDoc, writeBatch, setDoc, increment, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         document.addEventListener('DOMContentLoaded', function () {
             
-            // GÜNCELLENDİ: "Canakkale" -> "Çanakkale"
             const CITIES = ["Hatay", "Van", "Kahramanmaras", "Gaziantep", "Eskisehir", "Mersin", "Ankara", "Izmir", "Bursa", "Zonguldak", "Çanakkale", "Batman"];
             const AQI_API_TOKEN = "08039ad9c3603305b99fc2bcaf155da6e0bfdc31";
             
@@ -590,7 +597,6 @@
             let cityMarkers = {}; 
             let userLocationMarkers = {};
 
-            // GÜNCELLENDİ: "Canakkale" -> "Çanakkale"
             const CITY_COORDINATES = {
                 "Istanbul": [41.0082, 28.9784], "Hatay": [36.2048, 36.1648], "Van": [38.4946, 43.3803],
                 "Kahramanmaras": [37.5849, 36.9381], "Gaziantep": [37.0667, 37.3833], "Eskisehir": [39.7767, 30.5206],
@@ -1111,7 +1117,10 @@
 
                 const questions = [
                     { id: 'q1', text: 'Bu projenin afet bölgeleri için ne kadar faydalı olduğunu düşünüyorsunuz?', options: ['Çok Faydalı', 'Faydalı', 'Kararsızım', 'Faydasız'] },
-                    { id: 'q2', text: 'Web sitesindeki verileri ve paneli anlaşılır buldunuz mu?', options: ['Evet, Çok Anlaşılır', 'Evet, Anlaşılır', 'Geliştirilebilir', 'Hayır, Anlaşılmaz'] }
+                    { id: 'q2', text: 'Web sitesindeki verileri ve paneli anlaşılır buldunuz mu?', options: ['Evet, Çok Anlaşılır', 'Evet, Anlaşılır', 'Geliştirilebilir', 'Hayır, Anlaşılmaz'] },
+                    { id: 'q3', text: 'Mikroalglerin CO2 yakalama verimliliği karasal bitkilere göre nasıldır?', options: ['Daha Düşük', 'Aynı', '10-50 Kat Daha Yüksek', 'Bilmiyorum'] },
+                    { id: 'q4', text: 'Bu projede kullanılan ana teknoloji nedir?', options: ['Güneş Panelleri', 'Fotobiyoreaktör (FBR)', 'Rüzgar Türbini', 'Jeotermal Enerji'] },
+                    { id: 'q5', text: 'Projenin afet bölgelerine sağladığı temel fayda nedir?', options: ['Sadece Enerji', 'Sadece Temiz Hava', 'Hava, Enerji ve Eğitim', 'Sadece Gıda'] }
                 ];
 
                 let surveyData = {};
@@ -1149,6 +1158,20 @@
 
                 const renderQuestions = () => {
                     surveyContainer.innerHTML = '';
+                    const educationDiv = document.createElement('div');
+                    educationDiv.className = 'mb-8';
+                    educationDiv.innerHTML = `
+                        <label for="education-level" class="block text-lg font-semibold text-center text-[#073B4C] mb-2">Lütfen Eğitim Seviyenizi Seçin</label>
+                        <select id="education-level" class="w-full max-w-xs mx-auto p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#06D6A0] focus:outline-none">
+                            <option value="Belirtilmedi">Belirtmek İstemiyorum</option>
+                            <option value="İlköğretim">İlköğretim</option>
+                            <option value="Lise">Lise</option>
+                            <option value="Üniversite">Üniversite</option>
+                            <option value="Yüksek Lisans/Doktora">Yüksek Lisans/Doktora</option>
+                        </select>
+                    `;
+                    surveyContainer.appendChild(educationDiv);
+
                     questions.forEach(q => {
                         const questionDiv = document.createElement('div');
                         questionDiv.innerHTML = `<h3 class="text-xl font-semibold text-center mb-4">${q.text}</h3>`;
@@ -1163,11 +1186,22 @@
                                 // Disable all buttons after a vote
                                 surveyContainer.querySelectorAll('button').forEach(btn => btn.disabled = true);
                                 
-                                const voteField = `${q.id}.${opt}`;
-                                await runTransaction(db, async (transaction) => {
-                                    transaction.set(userVoteRef, { voted: true, timestamp: serverTimestamp() });
-                                    transaction.set(surveyResultsRef, { [q.id]: { [opt]: increment(1) } }, { merge: true });
-                                });
+                                const educationLevel = document.getElementById('education-level').value;
+                                const voteData = {
+                                    voted: true,
+                                    timestamp: serverTimestamp(),
+                                    education: educationLevel,
+                                    answers: {
+                                        [q.id]: opt
+                                    }
+                                };
+                                
+                                await setDoc(userVoteRef, voteData, { merge: true });
+
+                                const updateData = {};
+                                updateData[`${q.id}.${opt}`] = increment(1);
+                                await setDoc(surveyResultsRef, updateData, { merge: true });
+
                                 localStorage.setItem(`voted_${surveyId}`, 'true');
                                 showMessage('Oyunuz için teşekkür ederiz!', 'success');
                             };
@@ -1222,8 +1256,7 @@
                     const allIframes = podcastList.querySelectorAll('iframe');
                     allIframes.forEach(iframe => {
                         if (iframe !== clickedIframe) {
-                            iframe.contentWindow.postMessage('{"method":"pause"}', '*');
-                            // A more forceful way to stop it
+                            // Stop other iframes by reloading them
                             const currentSrc = iframe.src;
                             iframe.src = ''; 
                             iframe.src = currentSrc;
@@ -1233,9 +1266,38 @@
             }
 
             const recordButton = document.getElementById('record-experience-button');
+            const submissionArea = document.getElementById('podcast-submission-area');
+            const submissionForm = document.getElementById('podcast-submission-form');
+            const podcastLinkInput = document.getElementById('podcast-link-input');
+
             if(recordButton) {
                 recordButton.addEventListener('click', () => {
                     window.open('https://www.podomatic.com/studio/new', '_blank');
+                    submissionArea.classList.remove('hidden');
+                });
+            }
+
+            if (submissionForm) {
+                submissionForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const podcastLink = podcastLinkInput.value.trim();
+                    if (podcastLink) {
+                        try {
+                            const appId = 'default-app-id';
+                            const submissionsRef = collection(db, "artifacts", appId, "public", "data", "podcast_submissions");
+                            await addDoc(submissionsRef, {
+                                userId: auth.currentUser.uid,
+                                link: podcastLink,
+                                submittedAt: serverTimestamp()
+                            });
+                            showMessage('Podcast linkiniz başarıyla gönderildi!', 'success');
+                            podcastLinkInput.value = '';
+                            submissionArea.classList.add('hidden');
+                        } catch (error) {
+                            console.error("Podcast linki gönderilirken hata:", error);
+                            showMessage('Link gönderilemedi. Lütfen tekrar deneyin.', 'error');
+                        }
+                    }
                 });
             }
 
