@@ -567,7 +567,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot, runTransaction, serverTimestamp, deleteDoc, writeBatch, setDoc, increment, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, collection, query, orderBy, limit, onSnapshot, runTransaction, serverTimestamp, deleteDoc, writeBatch, setDoc, increment, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         document.addEventListener('DOMContentLoaded', function () {
             
@@ -931,7 +931,6 @@
                 const latestData = history[history.length - 1];
                 if (!latestData) return;
 
-                // GÜNCELLENDİ: API optimizasyonu
                 if (JSON.stringify(latestData) === JSON.stringify(lastAnalyzedData)) {
                     console.log("Veri değişmedi, yeni analiz yapılmıyor.");
                     return;
@@ -959,7 +958,6 @@
                 } catch (error) { console.error("Yapay Zeka analizi sırasında hata:", error); analysisElement.innerHTML = `<p class="text-red-300">Analiz hatası: ${error.message}. Lütfen API anahtarınızı kontrol edin.</p>`; }
             }
             
-            // GÜNCELLENDİ: AI sohbet istemi
             const SYSTEM_PROMPT = `Sen, BIQ-Alg 0CO2 projesinin yapay zeka asistanısın. Görevin, kullanıcılara proje hakkında bilgi vermek, canlı verileri yorumlamak ve genel soruları yanıtlamaktır. Cevapların her zaman yardımsever, bilgilendirici ve Türkçe olmalıdır.
 
 ### Proje Bilgileri:
@@ -990,7 +988,7 @@
                     e.preventDefault();
                     const userMessage = chatInput.value.trim();
                     if (!userMessage) return;
-                    if (!userGeminiApiKey) { appendMessage('Lütfen önce Ayarlar bölümünden Gemini API Anahtarınızı girin.', 'ai'); return; }
+                    if (!userGeminiApiKey) { appendMessage('Lütfen önce Ayarlar bölümünden Gemini API Anahtarı girin.', 'ai'); return; }
                     
                     appendMessage(userMessage, 'user');
                     chatInput.value = '';
@@ -1111,9 +1109,11 @@
             function setupSurvey(userId) {
                 const appId = 'default-app-id';
                 const surveyContainer = document.getElementById('survey-container');
-                const surveyId = 'experience_survey_v1';
+                const surveyId = 'experience_survey_v2'; // New ID to avoid conflicts with old data
                 const userVoteRef = doc(db, "artifacts", appId, "public", "data", "survey_voters", `${surveyId}_${userId}`);
                 const surveyResultsRef = doc(db, "artifacts", appId, "public", "data", "survey_results", surveyId);
+                const surveyVotersColRef = collection(db, "artifacts", appId, "public", "data", "survey_voters");
+
 
                 const questions = [
                     { id: 'q1', text: 'Bu projenin afet bölgeleri için ne kadar faydalı olduğunu düşünüyorsunuz?', options: ['Çok Faydalı', 'Faydalı', 'Kararsızım', 'Faydasız'] },
@@ -1124,6 +1124,7 @@
                 ];
 
                 let surveyData = {};
+                let voterData = [];
 
                 const renderResults = () => {
                     surveyContainer.innerHTML = '';
@@ -1154,10 +1155,63 @@
                         questionDiv.appendChild(optionsContainer);
                         surveyContainer.appendChild(questionDiv);
                     });
+                    
+                    // Add stats section
+                    renderSurveyStats();
+                };
+
+                const renderSurveyStats = () => {
+                    const statsContainer = document.createElement('div');
+                    statsContainer.className = 'mt-12 pt-8 border-t-2 border-gray-200';
+                    statsContainer.innerHTML = `<h3 class="text-2xl font-bold font-heading text-center mb-6 text-[#073B4C]">Anket İstatistikleri</h3>`;
+
+                    // Education Stats
+                    const educationStats = {};
+                    voterData.forEach(voter => {
+                        if (voter.education) {
+                            educationStats[voter.education] = (educationStats[voter.education] || 0) + 1;
+                        }
+                    });
+                    
+                    const educationDiv = document.createElement('div');
+                    educationDiv.innerHTML = `<h4 class="text-xl font-semibold mb-3">Eğitim Seviyesine Göre Dağılım</h4>`;
+                    const educationList = document.createElement('ul');
+                    educationList.className = 'list-disc list-inside';
+                    for (const level in educationStats) {
+                        educationList.innerHTML += `<li><strong>${level}:</strong> ${educationStats[level]} oy</li>`;
+                    }
+                    educationDiv.appendChild(educationList);
+                    statsContainer.appendChild(educationDiv);
+
+                    // Location Stats
+                    const locationStats = {};
+                    voterData.forEach(voter => {
+                        if (voter.location) {
+                            const city = voter.location.split(',')[0];
+                            locationStats[city] = (locationStats[city] || 0) + 1;
+                        }
+                    });
+
+                    const locationDiv = document.createElement('div');
+                    locationDiv.className = 'mt-6';
+                    locationDiv.innerHTML = `<h4 class="text-xl font-semibold mb-3">Konuma Göre Dağılım</h4>`;
+                    const locationList = document.createElement('ul');
+                    locationList.className = 'list-disc list-inside';
+                    for (const city in locationStats) {
+                        locationList.innerHTML += `<li><strong>${city}:</strong> ${city} - ${locationStats[city]} oy</li>`;
+                    }
+                    locationDiv.appendChild(locationList);
+                    statsContainer.appendChild(locationDiv);
+
+                    surveyContainer.appendChild(statsContainer);
                 };
 
                 const renderQuestions = () => {
                     surveyContainer.innerHTML = '';
+                    const form = document.createElement('form');
+                    form.id = 'survey-form';
+                    form.className = 'space-y-8';
+
                     const educationDiv = document.createElement('div');
                     educationDiv.className = 'mb-8';
                     educationDiv.innerHTML = `
@@ -1170,7 +1224,7 @@
                             <option value="Yüksek Lisans/Doktora">Yüksek Lisans/Doktora</option>
                         </select>
                     `;
-                    surveyContainer.appendChild(educationDiv);
+                    form.appendChild(educationDiv);
 
                     questions.forEach(q => {
                         const questionDiv = document.createElement('div');
@@ -1179,51 +1233,94 @@
                         optionsContainer.className = 'grid grid-cols-1 sm:grid-cols-2 gap-4';
                         
                         q.options.forEach(opt => {
-                            const button = document.createElement('button');
-                            button.textContent = opt;
-                            button.className = 'w-full p-3 bg-gray-200 rounded-lg hover:bg-[#06D6A0] hover:text-white transition-colors';
-                            button.onclick = async () => {
-                                // Disable all buttons after a vote
-                                surveyContainer.querySelectorAll('button').forEach(btn => btn.disabled = true);
-                                
-                                const educationLevel = document.getElementById('education-level').value;
-                                const voteData = {
-                                    voted: true,
-                                    timestamp: serverTimestamp(),
-                                    education: educationLevel,
-                                    answers: {
-                                        [q.id]: opt
-                                    }
-                                };
-                                
-                                await setDoc(userVoteRef, voteData, { merge: true });
-
-                                const updateData = {};
-                                updateData[`${q.id}.${opt}`] = increment(1);
-                                await setDoc(surveyResultsRef, updateData, { merge: true });
-
-                                localStorage.setItem(`voted_${surveyId}`, 'true');
-                                showMessage('Oyunuz için teşekkür ederiz!', 'success');
-                            };
-                            optionsContainer.appendChild(button);
+                            const optionId = `${q.id}-${opt.replace(/\s/g, '')}`;
+                            optionsContainer.innerHTML += `
+                                <div>
+                                    <input type="radio" name="${q.id}" id="${optionId}" value="${opt}" class="hidden peer" required>
+                                    <label for="${optionId}" class="block w-full p-3 bg-gray-200 rounded-lg hover:bg-gray-300 peer-checked:bg-[#06D6A0] peer-checked:text-white transition-colors cursor-pointer">${opt}</label>
+                                </div>
+                            `;
                         });
                         questionDiv.appendChild(optionsContainer);
-                        surveyContainer.appendChild(questionDiv);
+                        form.appendChild(questionDiv);
                     });
+
+                    const submitButton = document.createElement('button');
+                    submitButton.type = 'submit';
+                    submitButton.textContent = 'Anketi Gönder';
+                    submitButton.className = 'w-full mt-8 bg-[#073B4C] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#118AB2] transition-colors shadow-md text-lg';
+                    form.appendChild(submitButton);
+
+                    form.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const formData = new FormData(form);
+                        const answers = {};
+                        let allAnswered = true;
+                        for (const q of questions) {
+                            if (formData.has(q.id)) {
+                                answers[q.id] = formData.get(q.id);
+                            } else {
+                                allAnswered = false;
+                                break;
+                            }
+                        }
+
+                        if (!allAnswered) {
+                            showMessage('Lütfen tüm soruları yanıtlayın.', 'error');
+                            return;
+                        }
+
+                        const educationLevel = document.getElementById('education-level').value;
+                        
+                        try {
+                            const visitorDocRef = doc(db, "artifacts", appId, "public", "data", "visitors", userId);
+                            const visitorDoc = await getDoc(visitorDocRef);
+                            const location = visitorDoc.exists() ? visitorDoc.data().location : "Bilinmiyor";
+
+                            await runTransaction(db, async (transaction) => {
+                                transaction.set(userVoteRef, { 
+                                    voted: true, 
+                                    timestamp: serverTimestamp(),
+                                    education: educationLevel,
+                                    location: location,
+                                    answers: answers
+                                });
+
+                                const updateData = {};
+                                for (const questionId in answers) {
+                                    const option = answers[questionId];
+                                    updateData[`${questionId}.${option}`] = increment(1);
+                                }
+                                transaction.set(surveyResultsRef, updateData, { merge: true });
+                            });
+
+                            localStorage.setItem(`voted_${surveyId}`, 'true');
+                            showMessage('Oyunuz için teşekkür ederiz!', 'success');
+                        } catch (error) {
+                            console.error("Anket oyu gönderilirken hata:", error);
+                            showMessage('Oyunuz gönderilemedi. Lütfen tekrar deneyin.', 'error');
+                        }
+                    });
+
+                    surveyContainer.appendChild(form);
                 };
 
                 onSnapshot(surveyResultsRef, (doc) => {
                     surveyData = doc.exists() ? doc.data() : {};
-                    // If user has voted, always show results
                     if (localStorage.getItem(`voted_${surveyId}`) === 'true') {
-                        renderResults();
+                        onSnapshot(surveyVotersColRef, (voterSnapshot) => {
+                            voterData = voterSnapshot.docs.map(d => d.data());
+                            renderResults();
+                        });
                     }
                 });
 
-                // Check if user has voted
                 const localVote = localStorage.getItem(`voted_${surveyId}`);
                 if (localVote === 'true') {
-                    renderResults();
+                    onSnapshot(surveyVotersColRef, (voterSnapshot) => {
+                        voterData = voterSnapshot.docs.map(d => d.data());
+                        renderResults();
+                    });
                 } else {
                     renderQuestions();
                 }
@@ -1249,19 +1346,18 @@
             // GÜNCELLENDİ: Podcast kontrol mantığı
             const podcastList = document.getElementById('podcast-list');
             if (podcastList) {
+                let activeIframe = null;
+
                 podcastList.addEventListener('click', (event) => {
                     const clickedIframe = event.target.closest('iframe');
                     if (!clickedIframe) return;
 
-                    const allIframes = podcastList.querySelectorAll('iframe');
-                    allIframes.forEach(iframe => {
-                        if (iframe !== clickedIframe) {
-                            // Stop other iframes by reloading them
-                            const currentSrc = iframe.src;
-                            iframe.src = ''; 
-                            iframe.src = currentSrc;
-                        }
-                    });
+                    if (activeIframe && activeIframe !== clickedIframe) {
+                        const src = activeIframe.src;
+                        activeIframe.src = '';
+                        activeIframe.src = src;
+                    }
+                    activeIframe = clickedIframe;
                 }, true);
             }
 
