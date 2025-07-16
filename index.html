@@ -127,6 +127,32 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        /* Anket Stilleri */
+        .poll-option-bar {
+            background-color: #e9ecef;
+            border-radius: 0.375rem;
+            overflow: hidden;
+            position: relative;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .poll-option-fill {
+            background-color: #06D6A0;
+            height: 100%;
+            transition: width 0.5s ease-in-out;
+        }
+        .poll-option-text {
+            position: absolute;
+            left: 0;
+            right: 0;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #073B4C;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -396,22 +422,20 @@
                         Çevre bilinci, sürdürülebilirlik ve hava kalitesi konularında daha derinlemesine bilgi edinmek için podcastimizi dinleyin.
                     </p>
                 </div>
-                <!-- GÜNCELLENDİ: Podcast iframe'leri sarmalandı -->
                 <div id="podcast-list" class="bg-white p-6 rounded-xl shadow-lg max-w-4xl mx-auto space-y-4">
                     <div class="podcast-wrapper">
-                        <iframe width="100%" height="205" allow="encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942087&theme=light" style="border: none; height: 205px; width: 100%;"></iframe>
+                        <iframe width="100%" height="205" allow="autoplay; encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942087&theme=light" style="border: none; height: 205px; width: 100%;"></iframe>
                     </div>
                     <div class="podcast-wrapper">
-                        <iframe width="100%" height="205" allow="encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942092&theme=light" style="border: none; height: 205px; width: 100%;"></iframe>  
+                        <iframe width="100%" height="205" allow="autoplay; encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942092&theme=light" style="border: none; height: 205px; width: 100%;"></iframe>  
                     </div>
                     <div class="podcast-wrapper">
-                        <iframe width="100%" height="205" allow="encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942850&theme=light" style="border: none; height: 205px; width: 100%;"></iframe>
+                        <iframe width="100%" height="205" allow="autoplay; encrypted-media" frameborder="0" src="https://www.podomatic.com/embed/v2/podcast/6688084?episode_id=10942850&theme=light" style="border: none; height: 205px; width: 100%;"></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- YENİ BÖLÜM: Deneyim Paylaşma -->
         <section id="experience-podcast-section" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                  <div class="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto text-center">
@@ -476,6 +500,22 @@
                 </div>
             </div>
         </section>
+        
+        <!-- YENİ BÖLÜM: Deneyim Anketi -->
+        <section id="survey-section" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-[#073B4C]">Deneyim Anketi</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                        Bu projenin gelişimine yardımcı olmak için lütfen birkaç saniyenizi ayırıp aşağıdaki soruları yanıtlayın.
+                    </p>
+                </div>
+                <div id="survey-container" class="space-y-10">
+                    <!-- Anket içeriği JavaScript tarafından yüklenecek -->
+                    <div class="text-center text-gray-500">Anket yükleniyor...</div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -503,7 +543,7 @@
                 <a id="share-whatsapp" href="#" target="_blank" class="p-4 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors" title="WhatsApp'ta Paylaş">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#25D366]"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 </a>
-                <a id="share-email" href="#" class="p-4 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors" title="E-posta ile Paylaş">
+                <a id="share-email" href="#" target="_blank" class="p-4 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors" title="E-posta ile Paylaş">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#D44638]"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 </a>
             </div>
@@ -519,11 +559,12 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot, runTransaction, serverTimestamp, deleteDoc, writeBatch, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, doc, collection, query, orderBy, limit, onSnapshot, runTransaction, serverTimestamp, deleteDoc, writeBatch, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         document.addEventListener('DOMContentLoaded', function () {
             
-            const CITIES = ["Hatay", "Van", "Kahramanmaras", "Gaziantep", "Eskisehir", "Mersin", "Ankara", "Izmir", "Bursa", "Zonguldak", "Canakkale", "Batman"];
+            // GÜNCELLENDİ: "Canakkale" -> "Çanakkale"
+            const CITIES = ["Hatay", "Van", "Kahramanmaras", "Gaziantep", "Eskisehir", "Mersin", "Ankara", "Izmir", "Bursa", "Zonguldak", "Çanakkale", "Batman"];
             const AQI_API_TOKEN = "08039ad9c3603305b99fc2bcaf155da6e0bfdc31";
             
             const firebaseConfig = {
@@ -542,18 +583,20 @@
             let allCityData = [];
             let chatHistory = [];
             let userGeminiApiKey = ''; 
+            let lastAnalyzedData = null; // AI Analizi optimizasyonu için
 
             let co2Chart, tdsChart, lightChart, tempHumidityChart, pbrPerformanceChart;
             let mymap;
             let cityMarkers = {}; 
             let userLocationMarkers = {};
 
+            // GÜNCELLENDİ: "Canakkale" -> "Çanakkale"
             const CITY_COORDINATES = {
                 "Istanbul": [41.0082, 28.9784], "Hatay": [36.2048, 36.1648], "Van": [38.4946, 43.3803],
                 "Kahramanmaras": [37.5849, 36.9381], "Gaziantep": [37.0667, 37.3833], "Eskisehir": [39.7767, 30.5206],
                 "Mersin": [36.8125, 34.6417], "Ankara": [39.9334, 32.8597], "Izmir": [38.4192, 27.1287],
                 "Bursa": [40.1885, 29.0609], "Zonguldak": [41.4566, 31.7988],
-                "Canakkale": [40.1467, 26.4086], "Batman": [37.8812, 41.1351]
+                "Çanakkale": [40.1467, 26.4086], "Batman": [37.8812, 41.1351]
             };
             
             function setupApiKeyManagement() {
@@ -592,6 +635,7 @@
                         loadExternalCityData();
                         setupAiChat();
                         setupUserStatistics(user.uid);
+                        setupSurvey(user.uid); // Anketi başlat
                     } else {
                         signInAnonymously(auth);
                     }
@@ -821,7 +865,6 @@
                             
                             await setDoc(userVisitorRef, { location: locationString, lat: latitude, lng: longitude, timestamp: serverTimestamp() });
 
-                            // GÜNCELLENDİ: Kullanıcının ilini tabloya ve haritaya ekleme mantığı
                             if (cityName && !allCityData.some(c => c.city === cityName)) {
                                 console.log(`Yeni il tespit edildi: ${cityName}. Veriler çekiliyor...`);
                                 const newCityData = await fetchAirQualityData(cityName);
@@ -878,12 +921,22 @@
             async function updateEfficiencyAnalysis(history) {
                 const analysisElement = document.getElementById('efficiency-analysis');
                 if (!analysisElement) return;
+
+                const latestData = history[history.length - 1];
+                if (!latestData) return;
+
+                // GÜNCELLENDİ: API optimizasyonu
+                if (JSON.stringify(latestData) === JSON.stringify(lastAnalyzedData)) {
+                    console.log("Veri değişmedi, yeni analiz yapılmıyor.");
+                    return;
+                }
+                
                 if (!userGeminiApiKey) { analysisElement.innerHTML = `<p class="text-center text-yellow-300">Analiz için lütfen Ayarlar bölümünden geçerli bir Gemini API Anahtarı girin.</p>`; return; }
                 if (history.length < 3) { analysisElement.innerHTML = `<p class="text-center">Yeterli veri toplanıyor...</p>`; return; }
+                
                 analysisElement.innerHTML = `<p class="text-center text-gray-300">Analiz üretiliyor...</p>`;
                 const recentHistory = history.slice(-5);
-                const latestData = recentHistory[recentHistory.length - 1];
-                if (!latestData) { analysisElement.innerHTML = `<p class="text-red-300">Analiz için yeterli son veri yok.</p>`; return; }
+                
                 const prompt = `Sen BIQ-Alg 0CO2 projesi için bir uzman veri analistisin. Görevin, YALNIZCA aşağıda sağlanan verilere dayanarak kısa ve anlaşılır bir verimlilik analizi yapmaktır. Hava temizleme verimliliğini değerlendirmek için aşağıdaki gerçek zamanlı sensör verilerini analiz et. Özellikle CO2 seviyesindeki trende odaklan. Verilerde dikkat çekici bir değişiklik veya anormallik varsa belirt. Analizini 100 kelimeyi geçmeyecek şekilde, bilgilendirici ve net bir üslupla Türkçe olarak sun. Son Veri: - CO2: ${latestData.co2 ? latestData.co2.toFixed(0) : 'N/A'} ppm - Hava Kalitesi (CO2 bazlı): ${getAirQualityStatus(latestData.co2).text} - Işık Şiddeti: ${latestData.light_value ? latestData.light_value.toFixed(0) : 'N/A'} lux - Sıcaklık: ${latestData.temperature ? latestData.temperature.toFixed(1) : 'N/A'}°C - Nem: ${latestData.humidity ? latestData.humidity.toFixed(1) : 'N/A'}% - Zaman: ${formatDate(latestData.timestamp)} Geçmiş Veriler (Son 5, en eskiden en yeniye): ${recentHistory.map(d => `- Zaman: ${formatDate(d.timestamp)}, CO2: ${d.co2 ? d.co2.toFixed(0) : 'N/A'} ppm`).join('\n')}`;
                 try {
                     let chatHistoryForAnalysis = [{ role: "user", parts: [{ text: prompt }] }];
@@ -892,11 +945,15 @@
                     const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
                     if (!response.ok) { const errorBody = await response.json(); throw new Error(`API hatası: ${response.status} ${errorBody.error?.message || response.statusText}`); }
                     const result = await response.json();
-                    if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) { analysisElement.innerHTML = `<p>${result.candidates[0].content.parts[0].text}</p>`; } 
+                    if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) { 
+                        analysisElement.innerHTML = `<p>${result.candidates[0].content.parts[0].text}</p>`; 
+                        lastAnalyzedData = latestData; // Analiz başarılıysa son veriyi kaydet
+                    } 
                     else { analysisElement.innerHTML = `<p class="text-red-300">Analiz oluşturulamadı. Geçerli bir yanıt alınamadı.</p>`; }
                 } catch (error) { console.error("Yapay Zeka analizi sırasında hata:", error); analysisElement.innerHTML = `<p class="text-red-300">Analiz hatası: ${error.message}. Lütfen API anahtarınızı kontrol edin.</p>`; }
             }
             
+            // GÜNCELLENDİ: AI sohbet istemi
             const SYSTEM_PROMPT = `Sen, BIQ-Alg 0CO2 projesinin yapay zeka asistanısın. Görevin, kullanıcılara proje hakkında bilgi vermek, canlı verileri yorumlamak ve genel soruları yanıtlamaktır. Cevapların her zaman yardımsever, bilgilendirici ve Türkçe olmalıdır.
 
 ### Proje Bilgileri:
@@ -913,7 +970,7 @@
 ### Görevlerin:
 1.  **Proje Sorularını Yanıtla:** "Bu proje ne işe yarar?", "Hangi teknolojiyi kullanıyorsunuz?" gibi sorulara yukarıdaki bilgileri kullanarak cevap ver.
 2.  **Canlı Verileri Yorumla:** Kullanıcı "Hava nasıl?" veya "CO2 seviyesi kaç?" diye sorduğunda, sana aşağıda sağlanacak olan 'Mevcut Canlı Veriler' bölümündeki bilgileri kullanarak cevap ver.
-3.  **Genel Bilgi Sağla:** Hava kirliliği, mikroalgler, sürdürülebilirlik gibi konulardaki genel soruları, internetten edindiğin bilgilerle yanıtla.
+3.  **Genel Bilgi Sağla:** Proje dışındaki genel kültür, bilim, teknoloji gibi konulardaki soruları da internetten edindiğin bilgilerle, kapsamlı ve doğru bir şekilde yanıtla. Bilgi verirken kendinden emin ve ansiklopedik bir dil kullan.
 4.  **Kibar ve Yardımsever Ol:** Her zaman pozitif ve destekleyici bir dil kullan.`;
 
             function setupAiChat() {
@@ -1044,6 +1101,99 @@
 
             function downloadCSV() { if (lastHistoryData.length === 0) { showMessage("İndirilecek veri yok.", "info"); return; } const headers = ["Timestamp", "CO2 (ppm)", "Temperature (°C)", "Humidity (%)", "TDS (ppm)", "Light (lux)"]; const csvRows = [headers.join(',')]; lastHistoryData.forEach(data => { const row = [formatDate(data.timestamp), data.co2, data.temperature, data.humidity, data.tds_value, data.light_value].map(item => `"${item}"`).join(','); csvRows.push(row); }); const csvString = csvRows.join('\n'); const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `BIQ-Alg_Sensor_Data_${new Date().toISOString().slice(0, 10)}.csv`; document.body.appendChild(link); link.click(); document.body.removeChild(link); showMessage("Veriler CSV olarak indirildi!", "success"); }
             
+            // YENİ FONKSİYON: Anket
+            function setupSurvey(userId) {
+                const appId = 'default-app-id';
+                const surveyContainer = document.getElementById('survey-container');
+                const surveyId = 'experience_survey_v1';
+                const userVoteRef = doc(db, "artifacts", appId, "public", "data", "survey_voters", `${surveyId}_${userId}`);
+                const surveyResultsRef = doc(db, "artifacts", appId, "public", "data", "survey_results", surveyId);
+
+                const questions = [
+                    { id: 'q1', text: 'Bu projenin afet bölgeleri için ne kadar faydalı olduğunu düşünüyorsunuz?', options: ['Çok Faydalı', 'Faydalı', 'Kararsızım', 'Faydasız'] },
+                    { id: 'q2', text: 'Web sitesindeki verileri ve paneli anlaşılır buldunuz mu?', options: ['Evet, Çok Anlaşılır', 'Evet, Anlaşılır', 'Geliştirilebilir', 'Hayır, Anlaşılmaz'] }
+                ];
+
+                let surveyData = {};
+
+                const renderResults = () => {
+                    surveyContainer.innerHTML = '';
+                    const totalVotes = {};
+                    questions.forEach(q => {
+                        totalVotes[q.id] = q.options.reduce((sum, opt) => sum + (surveyData[q.id]?.[opt] || 0), 0);
+                    });
+
+                    questions.forEach(q => {
+                        const questionDiv = document.createElement('div');
+                        questionDiv.innerHTML = `<h3 class="text-xl font-semibold text-center mb-4">${q.text}</h3>`;
+                        const optionsContainer = document.createElement('div');
+                        optionsContainer.className = 'space-y-3';
+                        
+                        q.options.forEach(opt => {
+                            const voteCount = surveyData[q.id]?.[opt] || 0;
+                            const percentage = totalVotes[q.id] > 0 ? ((voteCount / totalVotes[q.id]) * 100).toFixed(1) : 0;
+                            optionsContainer.innerHTML += `
+                                <div class="poll-option-bar">
+                                    <div class="poll-option-fill" style="width: ${percentage}%;"></div>
+                                    <div class="poll-option-text">
+                                        <span>${opt}</span>
+                                        <span>${percentage}% (${voteCount} oy)</span>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        questionDiv.appendChild(optionsContainer);
+                        surveyContainer.appendChild(questionDiv);
+                    });
+                };
+
+                const renderQuestions = () => {
+                    surveyContainer.innerHTML = '';
+                    questions.forEach(q => {
+                        const questionDiv = document.createElement('div');
+                        questionDiv.innerHTML = `<h3 class="text-xl font-semibold text-center mb-4">${q.text}</h3>`;
+                        const optionsContainer = document.createElement('div');
+                        optionsContainer.className = 'grid grid-cols-1 sm:grid-cols-2 gap-4';
+                        
+                        q.options.forEach(opt => {
+                            const button = document.createElement('button');
+                            button.textContent = opt;
+                            button.className = 'w-full p-3 bg-gray-200 rounded-lg hover:bg-[#06D6A0] hover:text-white transition-colors';
+                            button.onclick = async () => {
+                                // Disable all buttons after a vote
+                                surveyContainer.querySelectorAll('button').forEach(btn => btn.disabled = true);
+                                
+                                const voteField = `${q.id}.${opt}`;
+                                await runTransaction(db, async (transaction) => {
+                                    transaction.set(userVoteRef, { voted: true, timestamp: serverTimestamp() });
+                                    transaction.set(surveyResultsRef, { [q.id]: { [opt]: increment(1) } }, { merge: true });
+                                });
+                                showMessage('Oyunuz için teşekkür ederiz!', 'success');
+                            };
+                            optionsContainer.appendChild(button);
+                        });
+                        questionDiv.appendChild(optionsContainer);
+                        surveyContainer.appendChild(questionDiv);
+                    });
+                };
+
+                onSnapshot(surveyResultsRef, (doc) => {
+                    surveyData = doc.exists() ? doc.data() : {};
+                    // If user has voted, always show results
+                    if (localStorage.getItem(`voted_${surveyId}`) === 'true') {
+                        renderResults();
+                    }
+                });
+
+                // Check if user has voted
+                const localVote = localStorage.getItem(`voted_${surveyId}`);
+                if (localVote === 'true') {
+                    renderResults();
+                } else {
+                    renderQuestions();
+                }
+            }
+
             // Uygulama başlangıcı
             initializeCharts();
             initializeMap();
@@ -1061,28 +1211,30 @@
                 });
             });
 
-            // YENİ: Podcast kontrol mantığı
-            const podcastWrappers = document.querySelectorAll('.podcast-wrapper');
-            const allIframes = document.querySelectorAll('#podcast-list iframe');
+            // GÜNCELLENDİ: Podcast kontrol mantığı
+            const podcastList = document.getElementById('podcast-list');
+            if (podcastList) {
+                podcastList.addEventListener('click', (event) => {
+                    const clickedIframe = event.target.closest('iframe');
+                    if (!clickedIframe) return;
 
-            podcastWrappers.forEach(wrapper => {
-                wrapper.addEventListener('click', () => {
-                    const clickedIframe = wrapper.querySelector('iframe');
+                    const allIframes = podcastList.querySelectorAll('iframe');
                     allIframes.forEach(iframe => {
                         if (iframe !== clickedIframe) {
+                            iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+                            // A more forceful way to stop it
                             const currentSrc = iframe.src;
-                            iframe.src = ''; // Stop playback
-                            iframe.src = currentSrc; // Restore src
+                            iframe.src = ''; 
+                            iframe.src = currentSrc;
                         }
                     });
-                }, true); // Use capture phase to catch click early
-            });
+                }, true);
+            }
 
-            // YENİ: Deneyim kaydetme butonu
             const recordButton = document.getElementById('record-experience-button');
             if(recordButton) {
                 recordButton.addEventListener('click', () => {
-                    showMessage('Bu özellik yakında aktif olacaktır!', 'info');
+                    window.open('https://www.podomatic.com/studio/new', '_blank');
                 });
             }
 
